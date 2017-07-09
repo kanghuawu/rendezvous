@@ -20,13 +20,14 @@ from rest_framework_jwt.views import obtain_jwt_token
 from server.views import PingAPIView
 
 urlpatterns = [
-    url(r'^ping/$', PingAPIView.as_view()),
     url(r'^admin/', admin.site.urls),
     # jwt token
-    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api/users/signin/', obtain_jwt_token),
 
     # api definition
     url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),
     url(r'^api/elders/', include("elders.api.urls", namespace='elders-api')),
     url(r'^api/activities/', include("activities.api.urls", namespace='activities-api')),
+
+    url(r'^$', PingAPIView.as_view()),
 ]

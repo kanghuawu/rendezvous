@@ -18,6 +18,8 @@ $ git clone https://github.com/lbfe/rendezvous.git
 $ git branch -a
 
 $ git checkout khwu/server
+
+$ git fetch
 ```
 
 #### Step 2

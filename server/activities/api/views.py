@@ -9,17 +9,23 @@ from .serializers import ActivitySerializer, ActivityTypeSerializer
 class ActivityListAPIView(ListAPIView, CreateAPIView):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
-    # def get_queryset(self, *args, **kwargs):
-    #     queryset_list = Post.objects.all().filter(user=self.request.user)
+    def get_queryset(self, *args, **kwargs):
+        print Activity.objects.all()
+        queryset_list = Activity.objects.all().filter(user = self.request.user)
+        return queryset_list
 
-    # def perform_create(self, serializer):
-    #     serializer.save(user = self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
 
 
 class ActivityDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = ActivityType.objects.all()
     serializer_class = ActivityTypeSerializer
     lookup_field = 'activity_id'
+    def get_queryset(self, *args, **kwargs):
+        print Activity.objects.all()
+        queryset_list = Activity.objects.all().filter(user = self.request.user)
+        return queryset_list
 
 
 class ActivityTypeListAPIView(ListAPIView, CreateAPIView):

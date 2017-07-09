@@ -38,7 +38,6 @@ class MyUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
         )
 
         user.set_password(password)
@@ -53,7 +52,6 @@ class MyUserManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password,
-            date_of_birth=date_of_birth,
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -62,11 +60,9 @@ class MyUserManager(BaseUserManager):
 
 class MyUser(AbstractBaseUser):
     email = models.EmailField(
-        verbose_name='email address',
         max_length=255,
         unique=True,
     )
-    date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

@@ -12,7 +12,7 @@ class ActivityType(models.Model):
 class Activity(models.Model):
     activity_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.SET_NULL, null = True)
-    elder = models.ForeignKey(Elder, default=1)
+    elder = models.ForeignKey(Elder, on_delete = models.SET_NULL, default=1, null = True)
     activity_type = models.ForeignKey('ActivityType', default=1, on_delete = models.SET_NULL, null = True)
     hours = models.IntegerField()
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)

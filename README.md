@@ -8,6 +8,7 @@ Have following requirements installed:
 * virtualenv (recommended)
 * MySQL (recommended)
 
+
 #### Step 1
 
 Clone this repository and checkout this branch ([reference](https://stackoverflow.com/questions/1911109/how-to-clone-a-specific-git-branch))
@@ -118,4 +119,124 @@ curl -X POST \
 	"first_name": "aaa",
 	"last_name": "ccc"
 }'
+```
+
+#### Step 6
+
+Send request to heroku
+
+##### 1 Sign up a user
+
+method: POST
+
+url: https://immense-wildwood-85181.herokuapp.com/api/users/signup/
+
+body
+```
+{
+	"email": "test1@test.com",
+	"password": "test"
+}
+```
+
+##### 2 Sign in a user
+
+method: POST
+
+url: https://immense-wildwood-85181.herokuapp.com/api/users/signin/
+
+body
+```
+{
+	"email": "test1@test.com",
+	"password": "test"
+}
+```
+response:
+```
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTk3Mjc2MTUsImVtYWlsIjoidGVzdDFAdGVzdC5jb20iLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIn0.3JnJRarD1Ze-BO_nLmbXqbgHAE3nbccZVviYdr5JB4E"
+}
+```
+
+##### 3 Retrieve your activities
+
+method: GET
+
+url: https://immense-wildwood-85181.herokuapp.com/api/activities/
+
+header
+```
+Key:
+Authorization
+
+Value:
+JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTk3Mjc2MTUsImVtYWlsIjoidGVzdDFAdGVzdC5jb20iLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIn0.3JnJRarD1Ze-BO_nLmbXqbgHAE3nbccZVviYdr5JB4E
+```
+
+##### 3 Create an elder to your elder list
+
+method: POST
+
+url: https://immense-wildwood-85181.herokuapp.com/api/elders/
+
+header
+```
+Key:
+Authorization
+
+Value:
+JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTk3Mjc2MTUsImVtYWlsIjoidGVzdDFAdGVzdC5jb20iLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIn0.3JnJRarD1Ze-BO_nLmbXqbgHAE3nbccZVviYdr5JB4E
+```
+body
+```
+{
+	"first_name":"aaa",
+	"last_name":"bbb"
+}
+```
+##### 4 Create an activity type
+
+method: POST
+
+url: https://immense-wildwood-85181.herokuapp.com/api/activities/type/
+
+header
+```
+Key:
+Authorization
+
+Value:
+JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTk3Mjc2MTUsImVtYWlsIjoidGVzdDFAdGVzdC5jb20iLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIn0.3JnJRarD1Ze-BO_nLmbXqbgHAE3nbccZVviYdr5JB4E
+```
+body
+```
+{
+	"type_name": "Lunch"
+}
+```
+
+
+##### 5 Create an activity
+
+method: POST
+
+url: https://immense-wildwood-85181.herokuapp.com/api/activities/
+
+header
+```
+Key:
+Authorization
+
+Value:
+JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTk3Mjc2MTUsImVtYWlsIjoidGVzdDFAdGVzdC5jb20iLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIn0.3JnJRarD1Ze-BO_nLmbXqbgHAE3nbccZVviYdr5JB4E
+```
+body
+```
+{
+	"elder":1,
+	"activity_type":1,
+	"hours":4,
+	"comment": "very happy"
+}
 ```

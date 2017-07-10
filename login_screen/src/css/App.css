@@ -1,0 +1,22 @@
+.center {
+    margin: auto;
+    width: 100%;
+    background-color: #E4B7B7;
+    border: #E4B7B7;
+    padding-top: 100px;
+    text-align: center;
+}
+.register-bt{
+	/*color: #E30000; red color*/
+	/*right: 25%; doesnt look nice in mobile*/
+	float: right;
+}
+.cred_space{
+	padding-left: 37%;
+}
+.fb_space{
+    margin: 50px;
+}
+.gg_space{
+    margin: -30px;
+}

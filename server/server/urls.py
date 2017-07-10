@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),
     url(r'^api/elders/', include("elders.api.urls", namespace='elders-api')),
     url(r'^api/activities/', include("activities.api.urls", namespace='activities-api')),
-
     url(r'^$', PingAPIView.as_view()),
+
+    url(r'^api/volunteers/', include("volunteers.api.urls", namespace='volunteers-api')),
 ]

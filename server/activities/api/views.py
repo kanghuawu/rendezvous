@@ -6,6 +6,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDe
 from activities.models import Activity, ActivityType
 from .serializers import ActivitySerializer, ActivityTypeSerializer
 
+
 class ActivityListAPIView(ListAPIView, CreateAPIView):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer

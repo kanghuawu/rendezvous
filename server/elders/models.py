@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 
+
 # Create your models here.
 class Elder(models.Model):
     elder_id = models.AutoField(primary_key=True)

@@ -101,8 +101,8 @@ DATABASES = {
 
 # heroku db
 
-# DATABASES['default'] = dj_database_url.config()
-# DATABASES['default']['CONN_MAX_AGE'] = 500
+DATABASES['default'] = dj_database_url.config()
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

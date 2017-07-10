@@ -41,7 +41,7 @@ class MyUserManager(BaseUserManager):
         )
 
         user.set_password(password)
-        user.save(using=self._db)
+        user.save()
         return user
 
     def create_superuser(self, email, date_of_birth, password):
@@ -70,6 +70,9 @@ class MyUser(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['date_of_birth']
+
+    def get_username(self):
+        return self.email
 
     def get_full_name(self):
         # The user is identified by their email address

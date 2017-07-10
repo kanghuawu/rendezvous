@@ -23,7 +23,6 @@ class ActivityDetailAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = ActivityTypeSerializer
     lookup_field = 'activity_id'
     def get_queryset(self, *args, **kwargs):
-        print Activity.objects.all()
         queryset_list = Activity.objects.all().filter(user = self.request.user)
         return queryset_list
 

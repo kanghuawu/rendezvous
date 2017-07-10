@@ -14,6 +14,7 @@ import os
 import datetime
 import dj_database_url
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
     'activities.apps.ActivitiesConfig',
     'elders.apps.EldersConfig',
 ]
+
+AUTH_USER_MODEL = 'accounts.MyUser'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -98,8 +101,8 @@ DATABASES = {
 
 # heroku db
 
-DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['CONN_MAX_AGE'] = 500
+# DATABASES['default'] = dj_database_url.config()
+# DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -154,9 +157,12 @@ STATIC_URL = '/static/'
 # https://github.com/ottoyiu/django-cors-headers
 CORS_ORIGIN_ALLOW_ALL = True
 
+# import custom_jwt
+
 # JWT setting
 JWT_AUTH = {
+    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'custom_jwt.jwt_response_payload_handler',
+    # 'JWT_PAYLOAD_HANDLER': 'custom_jwt.jwt_payload_handler',
     'JWT_VERIFY_EXPIRATION': False,
+    'JWT_USERNAME_FIELD': 'email',
 }
-
-AUTH_USER_MODEL = 'accounts.MyUser'

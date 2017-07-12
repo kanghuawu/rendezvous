@@ -15,5 +15,5 @@ class Volunteer(models.Model):
 	hearts = models.SmallIntegerField()
 	badges = models.SmallIntegerField()
 
-	def __str__(self):
-		return self.first_name + " "+ self.last_name
+	#def __str__(self):
+	#	return self.first_name + " "+ self.last_name

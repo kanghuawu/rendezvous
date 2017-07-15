@@ -1,9 +1,11 @@
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST, HTTP_422_UNPROCESSABLE_ENTITY
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
-from .serializers import UserSerializer
+from .serializers import UserSerializer, AccountSerializer
+from rest_framework.views import APIView
+from accounts.models import User
 
 User = get_user_model()
 
@@ -21,6 +23,11 @@ class UserCreateAPIView(CreateAPIView):
             serializer.save(email=self.request.data['email'])
             return Response(serializer.data, HTTP_200_OK)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+class AccountsListAPIView(ListAPIView, CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = AccountSerializer
+
     # def create(self, request, *args, **kwargs):
     #     serializer = UserSerializer(data=request.data)
     #     queryset = User.objects.filter(email=self.request.data['email'])

@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework_jwt.views import obtain_jwt_token
 from server.views import PingAPIView
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,7 +29,6 @@ urlpatterns = [
     url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),
     url(r'^api/elders/', include("elders.api.urls", namespace='elders-api')),
     url(r'^api/activities/', include("activities.api.urls", namespace='activities-api')),
-    url(r'^$', PingAPIView.as_view()),
-
+    url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^api/volunteers/', include("volunteers.api.urls", namespace='volunteers-api')),
 ]

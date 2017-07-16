@@ -1,12 +1,22 @@
+var path = require("path")
+var webpack = require('webpack')
+var BundleTracker = require('webpack-bundle-tracker')
+
 module.exports = {
   entry: [
     './src/index.js'
   ],
   output: {
-    path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: path.resolve('./bundles/'),
+    filename: "[name].js",
   },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(), // don't reload if there is an error
+    new BundleTracker({filename: './webpack-stats.json'}),
+  ],
+
   module: {
     loaders: [{
       exclude: /node_modules/,

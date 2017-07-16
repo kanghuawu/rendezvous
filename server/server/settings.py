@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # add app
     'rest_framework',
     'corsheaders',
+    'webpack_loader',
     # local app
     'accounts.apps.AccountsConfig',
     'activities.apps.ActivitiesConfig',
@@ -69,7 +70,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,6 +82,21 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# webpack_loader config for react integration
+CLIENT_DIR = os.path.join(os.path.dirname(BASE_DIR), 'client/')
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(CLIENT_DIR, 'webpack-stats.json'),
+    }
+}
+
+STATICFILES_DIRS = (
+    CLIENT_DIR, # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
+)
+
 
 WSGI_APPLICATION = 'server.wsgi.application'
 

@@ -80,6 +80,14 @@ mysql > show databases;
 
 #### Step 4
 
+Integrate React views with Django using Webpack, note the webback config is in 'client/webpack.config.js'
+
+Run following command in client directory to generate compiled react code to bundles dir.
+
+```
+./node_modules/.bin/webpack --config webpack.config.js
+```
+
 Launch django REST server
 
 ```

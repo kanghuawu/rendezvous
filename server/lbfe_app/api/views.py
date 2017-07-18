@@ -145,7 +145,7 @@ class VolunteerActivitiesView(ListAPIView):
         volunteer_id = self.request.query_params.get('volunteer_id', None)
         print 'Volunteer ID: ' + volunteer_id
         if volunteer_id is not None:
-            queryset = Activity.objects.filter(volunteer_id=volunteer_id).('-id')[:10] 
+            queryset = Activity.objects.filter(volunteer_id=volunteer_id).order_by('volunteer_id')[:3] 
         return queryset
 
 

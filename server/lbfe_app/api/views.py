@@ -146,6 +146,7 @@ class VolunteerActivitiesView(ListAPIView):
         print 'Volunteer ID: ' + volunteer_id
         if volunteer_id is not None:
             queryset = Activity.objects.filter(volunteer_id=volunteer_id).order_by('volunteer_id')[::-1][:3]
+            #[::-1] reverses 
         return queryset
 
 

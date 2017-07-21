@@ -5,16 +5,19 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from activities.models import Activity, ActivityType
 from .serializers import ActivitySerializer, ActivityTypeSerializer
+from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination
+from .pagination import PostPageNumberPagination
 
 
 class ActivityListAPIView(ListAPIView, CreateAPIView):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
-    def get_queryset(self, *args, **kwargs):
-        print Activity.objects.all()
-        queryset_list = Activity.objects.all().filter(user = self.request.user)
-        return queryset_list
+    # def get_queryset(self, *args, **kwargs):
+    #     print Activity.objects.all()
+    #     queryset_list = Activity.objects.all().filter(user = self.request.user)
+    #     return queryset_list
 
+    pagination_class = PostPageNumberPagination
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
 

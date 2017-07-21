@@ -4,6 +4,8 @@ from datetime import date, timedelta
 from django.conf import settings
 from django.db import models
 from elders.models import Elder
+from volunteers.models import Volunteer
+
 
 
 # Create your models here.
@@ -14,12 +16,15 @@ class ActivityType(models.Model):
 
 class Activity(models.Model):
     activity_id = models.AutoField(primary_key=True)
-    volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.SET_NULL, null = True)
-    elder = models.ForeignKey(Elder, default=1)
-    type = models.ForeignKey('ActivityType', default=1, on_delete = models.SET_NULL, null = True)
+    #user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.SET_NULL, null = True)
+    volunteer = models.ForeignKey(Volunteer, on_delete = models.SET_NULL, null = True)
+    elder = models.ForeignKey(Elder, on_delete = models.SET_NULL, null = True)
+    activity_type = models.ForeignKey('ActivityType',on_delete = models.SET_NULL, null = True)
     duration = models.DurationField(default=timedelta(seconds=0))
-    date = models.DateField(default=date.today())
+    date = models.DateField(auto_now=False,auto_now_add=False)
     comment = models.CharField(max_length=300, blank = True)
+    status = models.CharField(default="OK",max_length=10, blank = False) #OK or NOT OK
+    elaborate = models.CharField(max_length=10, blank = True) #311 411 911
 
 '''
 {

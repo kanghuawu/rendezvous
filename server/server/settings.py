@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'lbfe',
         'USER': 'root',
         'PASSWORD': 'toor',
-        'HOST': 'localhost',
+        'HOST': '192.168.1.2',
         'PORT': '3306',
     }
 }

@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'leaderboardServer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lbfe',
+        'NAME': 'leaderboard',
         'USER': 'leaderboard',
         'PASSWORD' : 'pass',
         'HOST' : '192.168.1.2',

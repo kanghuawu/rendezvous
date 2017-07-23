@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-	url(r'^lbfe_app/', include('lbfe_app.urls')),
-    url(r'^lbfe_app/api/', include('lbfe_app.api.urls')),
+    url(r'^app/', include('app.urls')),
+    url(r'^app/api/', include('app.api.urls')),
     url(r'^admin/', admin.site.urls),
 ]

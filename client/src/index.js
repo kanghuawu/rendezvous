@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
-
 import App from './components/app';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
@@ -37,4 +36,4 @@ ReactDOM.render(
       </Route>
     </Router>
   </Provider>
-  , document.querySelector('.container'));
+  , document.getElementById('container'));

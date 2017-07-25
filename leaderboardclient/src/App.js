@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import { Table} from 'react-materialize';
 
 class App extends Component {
   constructor(props){
@@ -35,14 +36,52 @@ class App extends Component {
           })
     .catch(function (error){console.log(error)});
   }
+/*  const PersonRow = (props) => {
+  return (
+    <tr>
+      <td>
+        { props.data.id }
+      </td>
+      <td>
+        { props.data.name }
+      </td>
+    </tr>
+  );
+}*/
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-          <input onChange={this.changeInput.bind(this)} placeholder={"Volunteer ID "} />
-          <button onClick={this.getVolunteer.bind(this)} type="button">GET A Volunteer</button>
+          <h2>Welcome to LeaderBoard</h2>
+          <Table>
+              <thead>
+                <tr>
+                  <th data-field="id">ID</th>
+                  <th data-field="name">Name</th>
+                  <th data-field="points">Points</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Alvin</td>
+                  <td>Eclair</td>
+                  <td>$0.87</td>
+                </tr>
+                <tr>
+                  <td>Alan</td>
+                  <td>Jellybean</td>
+                  <td>$3.76</td>
+                </tr>
+                <tr>
+                  <td>Jonathan</td>
+                  <td>Lollipop</td>
+                  <td>$7.00</td>
+                </tr>
+              </tbody>
+        </Table>
+
           <button onClick={this.getAllVolunteer.bind(this)} type="button">GET ALL Volunteer</button>
 
         </div>
@@ -53,3 +92,5 @@ class App extends Component {
 }
 
 export default App;
+// <input onChange={this.changeInput.bind(this)} placeholder={"Volunteer ID "} />
+//<button onClick={this.getVolunteer.bind(this)} type="button">GET A Volunteer</button>

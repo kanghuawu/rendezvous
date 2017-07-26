@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   getAllVolunteer(){
-    axios.get(this.state.base_url)
+    axios.get(this.state.base_url+"?id=1")
     .then(function (response){
       console.log(response.data)
           })
@@ -94,3 +94,4 @@ class App extends Component {
 export default App;
 // <input onChange={this.changeInput.bind(this)} placeholder={"Volunteer ID "} />
 //<button onClick={this.getVolunteer.bind(this)} type="button">GET A Volunteer</button>
+//"http://192.168.1.2:8000/lbfe_app/api/volunteeractivities/?volunteer_id=1"

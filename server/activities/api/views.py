@@ -19,21 +19,24 @@ class ActivityListAPIView(ListAPIView, CreateAPIView):
 
     pagination_class = PostPageNumberPagination
     def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
-
+        serializer.save(volunteer = self.request.user)
+    def get_queryset(self, *args, **kwargs):
+        queryset_list = Activity.objects.all().filter(volunteer = self.request.user)
+        return queryset_list
 
 class ActivityDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = ActivityType.objects.all()
     serializer_class = ActivityTypeSerializer
     lookup_field = 'activity_id'
     def get_queryset(self, *args, **kwargs):
-        queryset_list = Activity.objects.all().filter(user = self.request.user)
+        queryset_list = Activity.objects.all().filter(volunteer = self.request.user)
         return queryset_list
 
 
 class ActivityTypeListAPIView(ListAPIView, CreateAPIView):
     queryset = ActivityType.objects.all()
     serializer_class = ActivityTypeSerializer
+
 
 
 class ActivityTypeDetailAPIView(RetrieveUpdateDestroyAPIView):

@@ -44,14 +44,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'webpack_loader',
+    'custom_user',
     # local app
     'accounts.apps.AccountsConfig',
     'activities.apps.ActivitiesConfig',
     'elders.apps.EldersConfig',
-    'volunteers.apps.VolunteersConfig',
 ]
 
-AUTH_USER_MODEL = 'accounts.MyUser'
+AUTH_USER_MODEL = 'accounts.Volunteer'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -84,18 +84,18 @@ TEMPLATES = [
 ]
 
 
-# webpack_loader config for react integration
-CLIENT_DIR = os.path.join(os.path.dirname(BASE_DIR), 'client/')
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(CLIENT_DIR, 'webpack-stats.json'),
-    }
-}
+# # webpack_loader config for react integration
+# CLIENT_DIR = os.path.join(os.path.dirname(BASE_DIR), 'client/')
+# WEBPACK_LOADER = {
+#     'DEFAULT': {
+#         'BUNDLE_DIR_NAME': 'bundles/',
+#         'STATS_FILE': os.path.join(CLIENT_DIR, 'webpack-stats.json'),
+#     }
+# }
 
-STATICFILES_DIRS = (
-    CLIENT_DIR, # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
-)
+# STATICFILES_DIRS = (
+#     CLIENT_DIR, # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
+# )
 
 
 WSGI_APPLICATION = 'server.wsgi.application'

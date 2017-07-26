@@ -5,11 +5,23 @@ import { Link } from 'react-router';
 class Header extends Component {
   renderLinks() {
     if(this.props.authenticated){
-      return (
-        <li className="nav-item">
+      return [
+        <li className="nav-item" key={1}>
+          <Link className="nav-link" to="/checkin">Check In</Link>
+        </li>,
+        <li className="nav-item" key={2}>
+          <Link className="nav-link" to="/history">History</Link>
+        </li>,
+        <li className="nav-item" key={3}>
+          <Link className="nav-link">Leaderboard</Link>
+        </li>,
+        <li className="nav-item" key={4}>
+          <Link className="nav-link" to="/profile">Profile</Link>
+        </li>,
+        <li className="nav-item" key={5}>
           <Link className="nav-link" to="/signout">Sign out</Link>
         </li>
-      )
+        ];
     }else{
       return [
         <li className="nav-item" key={1}>
@@ -25,7 +37,7 @@ class Header extends Component {
   render(){
     return (
       <nav className="navbar navbar-light">
-        <Link to="/" className="navbar-brand">Redux Auth</Link>
+        <Link to="/" className="navbar-brand">Little Brothers</Link>
         <ul className="nav navbar-nav">
           {this.renderLinks()}
         </ul>

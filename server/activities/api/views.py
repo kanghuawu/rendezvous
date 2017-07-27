@@ -10,7 +10,7 @@ from .pagination import PostPageNumberPagination
 
 
 class ActivityListAPIView(ListAPIView, CreateAPIView):
-    queryset = Activity.objects.all()
+    #queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
     # def get_queryset(self, *args, **kwargs):
     #     print Activity.objects.all()
@@ -21,7 +21,7 @@ class ActivityListAPIView(ListAPIView, CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(volunteer = self.request.user)
     def get_queryset(self, *args, **kwargs):
-        queryset_list = Activity.objects.all().filter(volunteer = self.request.user)
+        queryset_list = Activity.objects.all().filter(volunteer = self.request.user).order_by('-date')
         return queryset_list
 
 class ActivityDetailAPIView(RetrieveUpdateDestroyAPIView):

@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   getAllVolunteer(){
-    axios.get(this.state.base_url+"?id=1")
+    axios.get(this.state.base_url)
     .then(function (response){
       console.log(response.data)
           })

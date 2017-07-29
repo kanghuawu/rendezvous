@@ -1,4 +1,9 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_ACTIVITIES } from '../actions/types';
+import { AUTH_USER, 
+  UNAUTH_USER, 
+  AUTH_ERROR, 
+  FETCH_ACTIVITIES,
+  FETCH_ACTIVITY_TYPES
+} from '../actions/types';
 
 export default function(state = {}, action) {
   switch(action.type){
@@ -10,7 +15,10 @@ export default function(state = {}, action) {
       return { ...state, error: action.payload };
     case FETCH_ACTIVITIES:
       // debugger;
-      return { ...state, activities: action.payload}
+      return { ...state, activities: action.payload};
+    case FETCH_ACTIVITY_TYPES:
+      // console.log(action.payload);
+      return { ...state, activityTypes: action.payload};
   }
   return state;
 }

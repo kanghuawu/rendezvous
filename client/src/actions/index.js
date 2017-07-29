@@ -78,6 +78,20 @@ export function fetchActivityDetail(id) {
   }
 }
 
+export function fetchActivityTypes() {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/api/activities/types/`, {
+      headers: { authorization: localStorage.getItem('token')}
+    })
+      .then(response => {
+        dispatch({
+          type: FETCH_ACTIVITY_TYPES,
+          payload: response.data
+        })
+      });
+  }
+}
+
 
 export function createActivity() {
 

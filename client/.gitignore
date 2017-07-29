@@ -4,7 +4,7 @@ npm-debug.log
 .DS_Store
 webpack-stats.json
 /bundles
-
+package-lock.json
 # IntelliJ
 *.iml
 /.idea

@@ -30,5 +30,5 @@ urlpatterns = [
     url(r'^api/elders/', include("elders.api.urls", namespace='elders-api')),
     url(r'^api/activities/', include("activities.api.urls", namespace='activities-api')),
     # url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^', PingAPIView.as_view()),
+    url(r'^ping/', PingAPIView.as_view()),
 ]

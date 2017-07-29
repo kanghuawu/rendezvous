@@ -1,0 +1,244 @@
+{
+	"variables": [],
+	"info": {
+		"name": "LB_server",
+		"_postman_id": "4602f603-96f0-7c31-98cc-002905bfc28a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "local",
+			"description": "",
+			"item": [
+				{
+					"name": "Ping",
+					"request": {
+						"url": "localhost:8000/ping/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"url": "localhost:8000/api/users/signup/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test1@test.com\",\n\t\"password\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"request": {
+						"url": "localhost:8000/api/users/signin/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test1@test.com\",\n\t\"password\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Activities",
+					"request": {
+						"url": "localhost:8000/api/activities/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Activities",
+					"request": {
+						"url": "localhost:8000/api/activities/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"elder\": 2,\n\t\"activity_type\": 1,\n\t\"duration\": 4,\n\t\"date\": \"2017-01-10\",\n\t\"status\": \"311\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Elders",
+					"request": {
+						"url": "localhost:8000/api/elders/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\":\"eee\",\n\t\"last_name\":\"bbb\",\n\t\"phone\": \"12345\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Elders",
+					"request": {
+						"url": "localhost:8000/api/elders/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mylist",
+					"request": {
+						"url": "localhost:8000/api/elders/mylist/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"elder\": 5\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mylist",
+					"request": {
+						"url": "localhost:8000/api/elders/mylist/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"elder\": 5\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Types",
+					"request": {
+						"url": "localhost:8000/api/activities/types/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Types",
+					"request": {
+						"url": "localhost:8000/api/activities/types/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxQHRlc3QuY29tIiwidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmNvbSIsImV4cCI6MTUwMTI5MTA3M30.hPYMigzodjAhRMUzB2RBVVjJMy7Spujs_KrM9KIjPtU",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type_name\": \"Breakfast\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

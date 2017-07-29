@@ -12,10 +12,6 @@ from .pagination import PostPageNumberPagination
 class ActivityListAPIView(ListAPIView, CreateAPIView):
     #queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
-    # def get_queryset(self, *args, **kwargs):
-    #     print Activity.objects.all()
-    #     queryset_list = Activity.objects.all().filter(user = self.request.user)
-    #     return queryset_list
 
     pagination_class = PostPageNumberPagination
     def perform_create(self, serializer):

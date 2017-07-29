@@ -19,6 +19,6 @@ class Activity(models.Model):
     elder = models.ForeignKey(Elder, on_delete = models.SET_NULL, null = True)
     activity_type = models.ForeignKey('ActivityType',on_delete = models.SET_NULL, null = True)
     duration = models.SmallIntegerField()
-    date = models.DateField(auto_now=True, auto_now_add=False)
+    date = models.DateField(auto_now_add=False, blank = True)
     status = models.CharField(max_length=10, blank = True)
     

@@ -108,8 +108,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'lb_server',
-        'USER': 'lb_server',
-        'PASSWORD': 'password',
+        'USER': 'root',
+        'PASSWORD': 'toor',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -143,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+   #     'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',

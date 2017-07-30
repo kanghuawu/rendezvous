@@ -19,3 +19,4 @@ class ElderVolunteer(models.Model):
 
     class Meta:
     	unique_together = ("elder", "volunteer")
+

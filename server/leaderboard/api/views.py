@@ -8,6 +8,6 @@ from .serializers import LeaderBoardSerializer
 
 
 class LeaderBoardListAPIView(ListAPIView, CreateAPIView):
-    #queryset = LeaderBoard.objects.all()
+    queryset = LeaderBoard.objects.all()
     serializer_class = LeaderBoardSerializer
 

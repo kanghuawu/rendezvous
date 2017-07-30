@@ -6,6 +6,7 @@ from django.db import models
 from elders.models import Elder
 
 
+
 # Create your models here.
 class ActivityType(models.Model):
     type_id = models.AutoField(primary_key=True)
@@ -15,16 +16,9 @@ class ActivityType(models.Model):
 class Activity(models.Model):
     activity_id = models.AutoField(primary_key=True)
     volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.SET_NULL, null = True)
-    elder = models.ForeignKey(Elder, default=1)
-    type = models.ForeignKey('ActivityType', default=1, on_delete = models.SET_NULL, null = True)
-    duration = models.DurationField(default=timedelta(seconds=0))
-    date = models.DateField(default=date.today())
-    comment = models.CharField(max_length=300, blank = True)
-
-'''
-{
-    "hours":1,
-    "comment": "happy"
-}
-
-'''
+    elder = models.ForeignKey(Elder, on_delete = models.SET_NULL, null = True)
+    activity_type = models.ForeignKey('ActivityType',on_delete = models.SET_NULL, null = True)
+    duration = models.SmallIntegerField()
+    date = models.DateField(auto_now=True, auto_now_add=False)
+    status = models.CharField(max_length=10, blank = True)
+    

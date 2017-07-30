@@ -3,20 +3,23 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST, HTTP_422_UNPROCESSABLE_ENTITY
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
-from .serializers import UserSerializer, AccountSerializer
+
+from .serializers import UsersSerializer
 from rest_framework.views import APIView
 from accounts.models import User
 
-User = get_user_model()
+from .serializers import VolunteerSerializer
 
-class UserCreateAPIView(CreateAPIView):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
+Volunteer = get_user_model()
+
+class VolunteerCreateAPIView(CreateAPIView):
+    serializer_class = VolunteerSerializer
+    queryset = Volunteer.objects.all()
     permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
-        serializer = UserSerializer(data=request.data)
-        queryset = User.objects.filter(email=self.request.data['email'])
+        serializer = VolunteerSerializer(data=request.data)
+        queryset = Volunteer.objects.filter(email=self.request.data['email'])
         if queryset.exists():
             return Response({"error": "User already exists"}, HTTP_422_UNPROCESSABLE_ENTITY)
         if serializer.is_valid(raise_exception=True):
@@ -26,7 +29,7 @@ class UserCreateAPIView(CreateAPIView):
 
 class AccountsListAPIView(ListAPIView, CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = AccountSerializer
+    serializer_class = UsersSerializer
 
     # def create(self, request, *args, **kwargs):
     #     serializer = UserSerializer(data=request.data)
@@ -69,3 +72,30 @@ class AccountsListAPIView(ListAPIView, CreateAPIView):
 #             new_data = serializer.data
 #             return Response(new_data, status=HTTP_200_OK)
 #         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+# -*- coding: utf-8 -*-
+# from __future__ import unicode_literals
+
+# from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+# from volunteers.models import Volunteer
+# from .serializers import VolunteerSerializer
+# from rest_framework.permissions import (
+#     AllowAny,
+#     IsAuthenticated,
+#     IsAdminUser,
+#     IsAuthenticatedOrReadOnly,
+#     )
+
+
+# class VolunteerListAPIView(ListAPIView, CreateAPIView):
+#     queryset = Volunteer.objects.all()
+#     serializer_class = VolunteerSerializer
+#     # permission_classes = [IsAuthenticated]
+
+
+# class VolunteerDetailAPIView(RetrieveUpdateDestroyAPIView):
+#     queryset = Volunteer.objects.all()
+#     serializer_class = VolunteerSerializer
+#     lookup_field = 'volunteer_id'
+#     # permission_classes = [IsAuthenticated]

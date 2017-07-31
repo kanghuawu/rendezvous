@@ -8,6 +8,11 @@ from .serializers import LeaderBoardSerializer
 
 
 class LeaderBoardListAPIView(ListAPIView, CreateAPIView):
-    queryset = LeaderBoard.objects.all()
+	queryset = LeaderBoard.objects.all()
     serializer_class = LeaderBoardSerializer
+   ''' 
+	def get_queryset(self, *args, **kwargs):
+    	queryset_list = LeaderBoard.objects.filter(volunteer_id = self.request.user)
+    	return queryset_list
+    '''
 

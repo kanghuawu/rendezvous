@@ -4,16 +4,18 @@ from datetime import date, timedelta
 from django.conf import settings
 from django.db import models
 
+from activities.models import Activity
+from accounts.models import Volunteer
 
 
-# Create your database views here.
+# Create your models here.
 class LeaderBoard(models.Model):
-    activity_id = models.AutoField(primary_key=True)
-    volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.SET_NULL, null = True)
-    elder = models.ForeignKey(Elder, on_delete = models.SET_NULL, null = True)
-    activity_type = models.ForeignKey('ActivityType',on_delete = models.SET_NULL, null = True)
-    duration = models.SmallIntegerField()
-    date = models.DateField(auto_now_add=False, blank = True)
-    status = models.CharField(max_length=10, blank = True)
+    leaderboard_id = models.AutoField(primary_key=True)
+    volunteer_id = models.ForeignKey(Volunteer, on_delete = models.DO_NOTHING) 
+    hours = models.SmallIntegerField()
 
-    
+class Meta:
+	managed = False
+	db_table = 'LeaderBoard'
+
+# select volunteer_id, sum(duration) as score from activities_activity where month(date) = month(curdate()) group by volunteer_id;

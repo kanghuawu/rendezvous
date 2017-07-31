@@ -12,6 +12,9 @@ class ActivityType(models.Model):
     type_id = models.AutoField(primary_key=True)
     type_name = models.CharField(max_length=30)
 
+    # def __unicode__(self):
+    #     return self.type_name
+
 
 class Activity(models.Model):
     activity_id = models.AutoField(primary_key=True)

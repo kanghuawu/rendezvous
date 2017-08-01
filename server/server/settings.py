@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'activities.apps.ActivitiesConfig',
     'elders.apps.EldersConfig',
     'leaderboard.apps.LeaderBoardConfig',
-    'django_celery_beat',
+    #'django_celery_beat',
 ]
 
 AUTH_USER_MODEL = 'accounts.Volunteer'

@@ -14,8 +14,5 @@ class LeaderBoard(models.Model):
     volunteer_id = models.ForeignKey(Volunteer, on_delete = models.DO_NOTHING) 
     hours = models.SmallIntegerField()
 
-class Meta:
-	managed = False
-	db_table = 'LeaderBoard'
 
 # select volunteer_id, sum(duration) as score from activities_activity where month(date) = month(curdate()) group by volunteer_id;

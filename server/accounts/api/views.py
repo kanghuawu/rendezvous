@@ -1,9 +1,9 @@
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST, HTTP_422_UNPROCESSABLE_ENTITY
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
-from .serializers import VolunteerSerializer
+from .serializers import VolunteerSerializer, VolunteerProfileSerializer
 
 Volunteer = get_user_model()
 
@@ -14,7 +14,7 @@ class VolunteerCreateAPIView(CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         serializer = VolunteerSerializer(data=request.data)
-        queryset = Volunteer.objects.filter(email=self.request.data['email'])
+        queryset = Volunteer.objects.get(email=self.request.data['email'])
         if queryset.exists():
             return Response({"error": "User already exists"}, HTTP_422_UNPROCESSABLE_ENTITY)
         if serializer.is_valid(raise_exception=True):
@@ -50,6 +50,15 @@ class VolunteerCreateAPIView(CreateAPIView):
     #     else:
     #         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
+class VolunteerDetailAPIView(RetrieveUpdateAPIView):
+    queryset = Volunteer.objects.all()
+    serializer_class = VolunteerProfileSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_object(self):
+        obj = self.queryset.get(email = self.request.user)
+        return obj
+
 
 # class UserSignInAPIView(APIView):
 #     permission_classes = [AllowAny]
@@ -83,9 +92,3 @@ class VolunteerCreateAPIView(CreateAPIView):
 #     serializer_class = VolunteerSerializer
 #     # permission_classes = [IsAuthenticated]
 
-
-# class VolunteerDetailAPIView(RetrieveUpdateDestroyAPIView):
-#     queryset = Volunteer.objects.all()
-#     serializer_class = VolunteerSerializer
-#     lookup_field = 'volunteer_id'
-#     # permission_classes = [IsAuthenticated]

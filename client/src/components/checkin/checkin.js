@@ -5,15 +5,14 @@ import * as actions from '../../actions';
 
 
 class CheckIn extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   onSubmit(formProps) {
-    // this.props.createActivity(formProps);
+    console.log(formProps);
+    this.props.createActivity(formProps);
   }
   componentWillMount(){
     this.props.fetchActivityTypes();
+    this.props.fetchMyEldersList();
   }
   
   renderActivityTypes() {
@@ -21,13 +20,30 @@ class CheckIn extends Component {
       return <div></div>;
     }
     const types = this.props.activityTypes.map(type => {
-      return <option name="type_id" value={type.type_id} >{type.type_name}</option>;
+      return <option key={type.type_id} name="type_id" value={type.type_id} >{type.type_name}</option>;
     });
     return (
       <div>
         <Field label="Activity Type:" name="activity_type" component="select" className="form-control" >
           <option></option>
           {types}
+        </Field>
+      </div>
+    );
+  }
+
+  renderMyEldersList() {
+    if (this.props.myElderList == null) {
+      return <div></div>;
+    }
+    const elder = this.props.myElderList.map(elder => {
+      return <option key={elder.elder} name="type_id" value={elder.elder} >{elder.elder}</option>;
+    });
+    return (
+      <div>
+        <Field name="elder" component="select" type="number" className="form-control" >
+          <option></option>
+          {elder}
         </Field>
       </div>
     );
@@ -42,7 +58,13 @@ class CheckIn extends Component {
         <div >
           <label>Elder Name</label>
           <div>
-            <Field name="elder" component="input" type="text" className="form-control" />
+            {this.renderMyEldersList()}
+          </div>
+        </div>
+        <div >
+          <label>Date</label>
+          <div>
+            <Field name="date" component="input" className="form-control" />
           </div>
         </div>
         <div>
@@ -55,24 +77,17 @@ class CheckIn extends Component {
         <div>
           <label>Duration (hours)</label>
           <div>
-            <Field name="duration" component="select" type="number" className="form-control" >
-              <option></option>
-              <option name={1}>1</option>
-              <option name={2}>2</option>
-              <option name={3}>3</option>
-              <option name={4}>Above 4</option>
-            </Field>
+            <Field name="duration" component="input" type="number" className="form-control" />
           </div>
         </div>
         <div>
           <label>Status</label>
           <div>
-            <Field name="duration" component="select" type="number" className="form-control" >
-              <option></option>
-              <option name={1}>1</option>
-              <option name={2}>2</option>
-              <option name={3}>3</option>
-              <option name={4}>Above 4</option>
+            <Field name="status" component="select" type="number" className="form-control" >
+              <option name="OK">OK</option>
+              <option name="311">311</option>
+              <option name="411">411</option>
+              <option name="911">911</option>
             </Field>
           </div>
         </div>
@@ -84,7 +99,10 @@ class CheckIn extends Component {
 
 
 function mapStateToProps(state) {
-  return { activityTypes: state.auth.activityTypes };
+  return { 
+    activityTypes: state.auth.activityTypes, 
+    myElderList: state.auth.myElderList,
+  };
 }
 
 export default connect(mapStateToProps, actions)(reduxForm({

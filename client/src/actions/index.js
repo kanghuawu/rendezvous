@@ -6,6 +6,8 @@ import { AUTH_USER,
   FETCH_ACTIVITIES,
   SELECTED_ACTIVITY,
   FETCH_ACTIVITY_TYPES,
+  FETCH_MY_ELDER_LIST,
+  FETCH_PROFILE,
 } from './types';
 
 const ROOT_URL = 'http://localhost:8000';
@@ -92,7 +94,52 @@ export function fetchActivityTypes() {
   }
 }
 
+export function fetchMyEldersList() {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/api/elders/mylist/`, {
+      headers: { authorization: localStorage.getItem('token')}
+    })
+      .then(response => {
+        dispatch({
+          type: FETCH_MY_ELDER_LIST,
+          payload: response.data
+        })
+      });
+  }
+}
 
-export function createActivity() {
+export function createActivity({elder, activity_type, duration, date, status}) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/api/activities/`, {elder, activity_type, duration, date, status},
+      { headers: { authorization: localStorage.getItem('token')}}
+      )
+      .then(response => {
+        browserHistory.push('/history');
+      })
+      .catch(response => {
+        console.log(response);
+      });
+  }
+}
 
+export function fetchProfile() {
+  axios.get(`${ROOT_URL}/api/users/profile/`,
+    { headers: { authorization: localStorage.getItem('token')}})
+  .then(response => {
+    return response;
+  })
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/api/users/profile/`, 
+      { headers: { authorization: localStorage.getItem('token')}}
+      )
+      .then(response => {
+        dispatch({
+          type: FETCH_PROFILE,
+          payload: response.data
+        })
+      })
+      .catch(response => {
+        console.log(response);
+      });
+  }
 }

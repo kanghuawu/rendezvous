@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from activities.models import Activity, ActivityType
+from leaderboard.models import LeaderBoard
 
 
 class LeaderBoardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Activity
+        model = LeaderBoard
         fields = '__all__'

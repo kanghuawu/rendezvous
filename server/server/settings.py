@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'activities.apps.ActivitiesConfig',
     'elders.apps.EldersConfig',
     'leaderboard.apps.LeaderBoardConfig',
+    'django_celery_beat',
 ]
 
 AUTH_USER_MODEL = 'accounts.Volunteer'
@@ -186,3 +187,14 @@ JWT_AUTH = {
     'JWT_VERIFY_EXPIRATION': False,
     'JWT_USERNAME_FIELD': 'email',
 }
+
+'''
+app.conf.beat_schedule = {
+    'add-every-30-seconds': {
+        'task': 'tasks.add',
+        'schedule': 30.0,
+        'args': (16, 16)
+    },
+}
+app.conf.timezone = 'UTC'
+'''

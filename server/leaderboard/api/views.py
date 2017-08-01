@@ -4,9 +4,11 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from django.db import connection
+from leaderboard.models import LeaderBoard 
 from activities.models import Activity
 from activities.api.serializers import ActivitySerializer
-query = 'select volunteer_id, sum(duration) as score from activities_activity where month(date) = month(curdate()) group by volunteer_id;'
+
+query = 'select volunteer_id, sum(duration) as score from activities_activity where month(date) = month(curdate())-1 group by volunteer_id;'
 
 class LeaderBoardListAPIView(ListAPIView, CreateAPIView):
 	queryset = Activity.objects.all()
@@ -15,14 +17,11 @@ class LeaderBoardListAPIView(ListAPIView, CreateAPIView):
 	cursor = connection.cursor()
 	cursor.execute(query)   
 	cursor.fetchall()
-	
-	v_id = list()
-	hours = list()
+
 	for q in cursor:
-		v_id.append(int(q[0]))
-		hours.append(int(q[1]))
-	print(v_id)
-	print(hours)	
+		cursor.execute("insert into leaderboard_leaderboard values(null,%s,%s);"%(int(q[1]),int(q[0])))
+
+	connection.close()
 		
 
 

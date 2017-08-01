@@ -4,14 +4,13 @@ from datetime import date, timedelta
 from django.conf import settings
 from django.db import models
 
-from activities.models import Activity
 from accounts.models import Volunteer
 
 
 # Create your models here.
 class LeaderBoard(models.Model):
     leaderboard_id = models.AutoField(primary_key=True)
-    volunteer_id = models.ForeignKey(Volunteer, on_delete = models.DO_NOTHING) 
+    volunteer = models.ForeignKey(Volunteer, on_delete = models.DO_NOTHING) 
     hours = models.SmallIntegerField()
 
 

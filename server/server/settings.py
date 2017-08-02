@@ -187,7 +187,13 @@ JWT_AUTH = {
     'JWT_VERIFY_EXPIRATION': False,
     'JWT_USERNAME_FIELD': 'email',
 }
-
+# celery
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
+#: Only add pickle to this list if your broker is secured
+#: from unwanted access (see userguide/security.html)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'db+mysql:///results.mysql'
+CELERY_TASK_SERIALIZER = 'json'
 '''
 app.conf.beat_schedule = {
     'add-every-30-seconds': {

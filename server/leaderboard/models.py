@@ -4,6 +4,7 @@ from datetime import date, timedelta
 from django.conf import settings
 from django.db import models, connection
 from accounts.models import Volunteer
+import time
 
 
 # Create your models here.
@@ -23,19 +24,18 @@ def updateLeaderBoard():
 	cursor.fetchall()
 	hours = list()
 	v_id  = list()
-#q[1] is hours
-#q[0] volunteer id
 	for q in cursor:
-		v_id.append(int(q[0]))
-		hours.append(int(q[1]))
-		print(int(q[1]))
-	print("-----")	
-	hours.reverse()	
+		v_id.append(int(q[0]))  #q[0] volunteer id
+		hours.append(int(q[1])) #q[1] is hours
+
+	hours.reverse()
 	for id in v_id:
-		#print(id)
-		cursor.execute("select first_name,last_name from accounts_volunteer where id = %s;"%(id))
-		name = cursor.fetchone()
-#		print(name[1])
-#		print(hours.pop())
-		cursor.execute("insert into leaderboard_leaderboard values(null,%s,%s,%d,curdate;"%("tets","test",hours.pop()))
+		cursor.execute("select email from accounts_volunteer where id = %s;"%(id))
+		name = "'%s'"%cursor.fetchone()
+		cursor.execute("insert into leaderboard_leaderboard values(null,%s,%s,%s,curdate());"%(name,name,hours.pop()))
 	connection.close()
+
+
+
+
+

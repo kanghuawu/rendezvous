@@ -10,7 +10,7 @@ import time
 
 class LeaderBoardListAPIView(ListAPIView, CreateAPIView):
 	updateLeaderBoard()
-	queryset = LeaderBoard.objects.filter(date=time.strftime("%Y-%m-%d"))
+	queryset = LeaderBoard.objects.filter(date__year=time.strftime("%Y"),date__month=time.strftime("%m"))
 	serializer_class = LeaderBoardSerializer
 
 		

@@ -3,21 +3,22 @@ from __future__ import unicode_literals
 from datetime import date, timedelta
 from django.conf import settings
 from django.db import models, connection
-from accounts.models import Volunteer
-import time
+#from accounts.models import Volunteer
+from celery.schedules import crontab
+from celery.task import periodic_task
 
 
 # Create your models here.
 class LeaderBoard(models.Model):
     leaderboard_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20, blank = True)
-    last_name = models.CharField(max_length=20, blank = True)
-    #volunteer = models.ForeignKey(Volunteer, on_delete = models.DO_NOTHING) 
+    last_name = models.CharField(max_length=20, blank = True) 
     hours = models.SmallIntegerField()
     date = models.DateField(auto_now_add=False)
 
-
+@periodic_task(run_every=crontab(minute=1))
 def updateLeaderBoard():
+	print("ran")
 	query = 'select volunteer_id, sum(duration) as score from activities_activity where month(date) = month(curdate()) group by volunteer_id;' # month()-1
 	cursor = connection.cursor()
 	cursor.execute(query)   

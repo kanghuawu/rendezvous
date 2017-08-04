@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'activities.apps.ActivitiesConfig',
     'elders.apps.EldersConfig',
     'leaderboard.apps.LeaderBoardConfig',
-    #'django_celery_beat',
+    'django_celery_beat',
 ]
 
 AUTH_USER_MODEL = 'accounts.Volunteer'
@@ -187,20 +187,3 @@ JWT_AUTH = {
     'JWT_VERIFY_EXPIRATION': False,
     'JWT_USERNAME_FIELD': 'email',
 }
-# celery
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
-#: Only add pickle to this list if your broker is secured
-#: from unwanted access (see userguide/security.html)
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_RESULT_BACKEND = 'db+mysql:///results.mysql'
-CELERY_TASK_SERIALIZER = 'json'
-'''
-app.conf.beat_schedule = {
-    'add-every-30-seconds': {
-        'task': 'tasks.add',
-        'schedule': 30.0,
-        'args': (16, 16)
-    },
-}
-app.conf.timezone = 'UTC'
-'''

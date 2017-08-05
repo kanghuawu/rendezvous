@@ -8,9 +8,10 @@ from .serializers import LeaderBoardSerializer
 import time
 
 
+
 class LeaderBoardListAPIView(ListAPIView, CreateAPIView):
 	updateLeaderBoard()
-	queryset = LeaderBoard.objects.filter(date__year=time.strftime("%Y"),date__month=time.strftime("%m"))
+	queryset = LeaderBoard.objects.filter(date__year=time.strftime("%Y"),date__month=int(time.strftime("%m"))-1)
 	serializer_class = LeaderBoardSerializer
 
 		

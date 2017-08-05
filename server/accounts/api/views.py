@@ -14,7 +14,8 @@ class VolunteerCreateAPIView(CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         serializer = VolunteerSerializer(data=request.data)
-        queryset = Volunteer.objects.get(email=self.request.data['email'])
+        print self.request.data['email']
+        queryset = Volunteer.objects.filter(email = self.request.data['email'])
         if queryset.exists():
             return Response({"error": "User already exists"}, HTTP_422_UNPROCESSABLE_ENTITY)
         if serializer.is_valid(raise_exception=True):

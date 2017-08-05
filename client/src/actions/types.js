@@ -6,3 +6,5 @@ export const SELECTED_ACTIVITY = 'selected_activity';
 export const FETCH_ACTIVITY_TYPES = 'fetch_activity_types';
 export const FETCH_MY_ELDER_LIST = 'fetch_my_elder_list';
 export const FETCH_PROFILE = 'fetch_profile';
+export const SEARCH_ELDERS_LIST = 'search_elder_list';
+export const ADD_ELDERS_LIST = 'add_elder_list';

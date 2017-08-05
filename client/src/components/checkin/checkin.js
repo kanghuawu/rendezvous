@@ -7,7 +7,6 @@ import * as actions from '../../actions';
 class CheckIn extends Component {
 
   onSubmit(formProps) {
-    console.log(formProps);
     this.props.createActivity(formProps);
   }
   componentWillMount(){
@@ -37,7 +36,7 @@ class CheckIn extends Component {
       return <div></div>;
     }
     const elder = this.props.myElderList.map(elder => {
-      return <option key={elder.elder} name="type_id" value={elder.elder} >{elder.elder}</option>;
+      return <option key={elder.match_id} name="type_id" value={elder.elder_id} >{elder.elder_fullname}</option>;
     });
     return (
       <div>
@@ -51,15 +50,13 @@ class CheckIn extends Component {
   
 
   render() {
-    const { handleSubmit} = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <div >
           <label>Elder Name</label>
-          <div>
-            {this.renderMyEldersList()}
-          </div>
+          {this.renderMyEldersList()}
         </div>
         <div >
           <label>Date</label>
@@ -69,9 +66,7 @@ class CheckIn extends Component {
         </div>
         <div>
           <label>Activity Type</label>
-          <div>
-            {this.renderActivityTypes()}
-          </div>
+          {this.renderActivityTypes()}
         </div>
         
         <div>

@@ -13,7 +13,7 @@ class Elder extends Component {
           key={elder.match_id}
           //onClick={() => this.props.selectActivity(activity.activity_id)}
           className="list-group-item">
-          {elder.elder}
+          {elder.elder_fullname + " " + elder.elder_phone} 
         </li>
       )});
   }

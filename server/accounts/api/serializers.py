@@ -24,15 +24,14 @@ class VolunteerLoginSerializer(ModelSerializer):
     token = models.CharField(blank=True)
     class Meta:
         model = Volunteer
-        fields = [
-            'email',
-            'password',
-            'token',
-        ]
-        extra_kwargs = {"password":
-                            {"write_only": True}
-                            }
+        fields = ['email', 'password', 'token',]
+        extra_kwargs = {"password": {"write_only": True}}
 
+class VolunteerProfileSerializer(ModelSerializer):
+    class Meta:
+        model = Volunteer
+        fields = ['first_name', 'last_name', 'phone', 'hearts', 'badges']
+        extra_kwargs = {'password': {'write_only': True}, 'hearts': {'read_only': True}, 'badges': {'read_only': True}}
 # class VolunteerDetailAPIView(RetrieveUpdateDestroyAPIView):
 #     queryset = Volunteer.objects.all()
 #     serializer_class = VolunteerSerializer

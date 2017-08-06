@@ -14,10 +14,17 @@ class History extends Component{
             key={activity.activity_id}
             //onClick={() => this.props.selectActivity(activity.activity_id)}
             className="list-group-item">
-            {activity.date} - {activity.volunteer}
+            {activity.date} - {activity.elder_fullname}
           </li>
         );
     });
+  }
+  handleClickPrevious() {
+    this.props.fetchActivities(this.props.activities.previous);
+  }
+
+  handleClickNext() {
+    this.props.fetchActivities(this.props.activities.next);
   }
 
   render() {
@@ -25,7 +32,12 @@ class History extends Component{
   		return <div>Loading...</div>;
   	}
     return (
-      <div>{this.renderList()}</div>
+      <div>
+        {this.renderList()}
+        <button className="btn btn-default" disabled={!this.props.activities.previous} onClick={this.handleClickPrevious.bind(this)}>Previous</button>
+        <button className="btn btn-default" disabled={!this.props.activities.next} onClick={this.handleClickNext.bind(this)}>Next</button>
+      </div>
+      
     )
   }
 }

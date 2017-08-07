@@ -10,6 +10,8 @@ import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import History from './components/history/history-list';
 import CheckIn from './components/checkin/checkin';
+import Profile from './components/profile/profile';
+import AddElder from './components/profile/add-elder';
 import RequireAuth from './components/auth/require_auth';
 import Welcome from './components/welcome';
 import reducers from './reducers';
@@ -35,6 +37,8 @@ ReactDOM.render(
         <Route path="signup" component={Signup} />
         <Route path="checkin" component={RequireAuth(CheckIn)} />
         <Route path="history" component={RequireAuth(History)} />
+        <Route path="profile" component={RequireAuth(Profile)} />
+        <Route path="addelder" component={RequireAuth(AddElder)} />
       </Route>
     </Router>
   </Provider>

@@ -175,3 +175,28 @@ export function addEldersList(elderList) {
   }
 }
 
+export function fetchLeaderBoard() {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/api/leaderboard/`)
+      .then(function (response){
+        console.log(response.data)
+      })
+      .catch(function (error){console.log(error)});
+  }
+}
+  /*
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/api/users/profile/`, 
+      { headers: { authorization: localStorage.getItem('token')}}
+      )
+      .then(response => {
+        dispatch({
+          type: FETCH_PROFILE,
+          payload: response.data
+        })
+      })
+      .catch(response => {
+        console.log(response);
+      });
+  }
+}*/

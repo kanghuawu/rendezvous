@@ -14,6 +14,7 @@ import Profile from './components/profile/profile';
 import AddElder from './components/profile/add-elder';
 import RequireAuth from './components/auth/require_auth';
 import Welcome from './components/welcome';
+import LeaderBoard from './components/leaderBoard';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
@@ -39,6 +40,7 @@ ReactDOM.render(
         <Route path="history" component={RequireAuth(History)} />
         <Route path="profile" component={RequireAuth(Profile)} />
         <Route path="addelder" component={RequireAuth(AddElder)} />
+        <Route path="leaderBoard" component={LeaderBoard} />
       </Route>
     </Router>
   </Provider>

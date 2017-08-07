@@ -8,3 +8,4 @@ export const FETCH_MY_ELDER_LIST = 'fetch_my_elder_list';
 export const FETCH_PROFILE = 'fetch_profile';
 export const SEARCH_ELDERS_LIST = 'search_elder_list';
 export const ADD_ELDERS_LIST = 'add_elder_list';
+/*export const GET_LEADER_BOARD = 'leaderBoard'*/

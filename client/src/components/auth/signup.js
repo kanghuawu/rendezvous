@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 class SignUp extends Component {
   handleFormSubmit(formProps) {
-    this.props.signUpUser(formProps);
+    this.props.signUpUser(formProps, () => this.props.history.push('/checkin'));
   }
   renderAlert(){
     if(this.props.errorMessage){

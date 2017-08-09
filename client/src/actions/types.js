@@ -1,10 +1,22 @@
 export const AUTH_USER = 'auth_user';
 export const UNAUTH_USER = 'unauth_user';
 export const AUTH_ERROR = 'auth_error';
+export const UPDATE_PASSWORD = 'update_password';
+
 export const FETCH_ACTIVITIES = 'fetch_activities';
-export const SELECTED_ACTIVITY = 'selected_activity';
 export const FETCH_ACTIVITY_TYPES = 'fetch_activity_types';
-export const FETCH_MY_ELDER_LIST = 'fetch_my_elder_list';
-export const FETCH_PROFILE = 'fetch_profile';
-export const SEARCH_ELDERS_LIST = 'search_elder_list';
+
+// my elders
+export const FETCH_ELDER_LIST = 'fetch_elder_list';
+
+// search
+export const SEARCH_LIST = 'search_list';
+export const CLEAR_SEARCH = 'clear_search';
 export const ADD_ELDERS_LIST = 'add_elder_list';
+
+// profile
+export const FETCH_PROFILE = 'fetch_profile';
+export const UPDATE_PROFILE = 'update_profile';
+
+
+

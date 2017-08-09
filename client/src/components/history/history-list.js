@@ -43,7 +43,7 @@ class History extends Component{
 }
 
 function mapStateToProps(state){
-  return { activities: state.auth.activities}
+  return { activities: state.activity.activities };
 }
 
 export default connect(mapStateToProps, actions)(History);

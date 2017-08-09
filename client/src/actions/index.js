@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { destroy } from 'redux-form';
 import { 
   AUTH_USER, 
   UNAUTH_USER, 
@@ -104,6 +105,7 @@ export const createActivity = ({elder, activity_type, duration, date, status}, c
     axios.post(`${ROOT_URL}/api/activities/create/`, {elder, activity_type, duration, date, status},
       { headers: { authorization: localStorage.getItem('token')}}
       ).then(response => {
+        destroy('checkin');
         callback();
       }).catch(response => {
         console.log(response);

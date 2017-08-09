@@ -12,6 +12,7 @@ import RequireAuth from './auth/require_auth';
 import History from './history/history-list';
 
 import CheckIn from './checkin/checkin';
+import CheckInFinished from './checkin/checkin-finished';
 
 import Profile from './profile/profile';
 import ProfileEdit from './profile/profile-edit';
@@ -29,6 +30,7 @@ export default () => {
           <Route path="/signout" component={Signout} />
           <Route path="/signup" component={Signup} />
           <Route path="/checkin" component={RequireAuth(CheckIn)} />
+          <Route path="/checkinfinished" component={RequireAuth(CheckInFinished)} />
           <Route path="/history" component={RequireAuth(History)} />
           <Route path="/profile/edit" component={RequireAuth(ProfileEdit)} />
           <Route path="/profile" component={RequireAuth(Profile)} /> 

@@ -53,19 +53,21 @@ class ElderVolunteerListAPIView(ListAPIView):
 
 
 class ElderVolunteerCreateListAPIView(CreateAPIView):
-    queryset = ElderVolunteer.objects.all()
     serializer_class = ElderVolunteerSerializer
+    search_fields = ['volunteer__email']
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
-        eldersArr = []
-        for elder in self.request.data.get('addelders'):
-            eldersArr.append({'elder': int(elder)})
+        queryset = ElderVolunteer.objects.filter(volunteer=self.request.user, elder__in=self.request.data.get('addelders'))
+        if queryset.exists():
+            return Response({'error': 'Elder Already Added'}, status=HTTP_400_BAD_REQUEST)
+        eldersArr = [{'elder': int(elder)} for elder in self.request.data.get('addelders')]
         serializer = self.get_serializer(data=eldersArr, many=True)
         if serializer.is_valid():
             serializer.save(volunteer=self.request.user)
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=HTTP_201_CREATED)
+        print serializer.errors
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 

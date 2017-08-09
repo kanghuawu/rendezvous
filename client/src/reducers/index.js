@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
-import authReducer from './auth_reducer';
+import auth from './auth-reducer';
+import profile from './profile-reducer';
+import myelder from './myelder-reducer';
+import search from './search-reducer';
 
 const rootReducer = combineReducers({
   form,
-  auth: authReducer
+  profile,
+  myelder,
+  search,
+  auth
 });
 
 export default rootReducer;

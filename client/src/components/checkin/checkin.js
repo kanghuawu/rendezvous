@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import * as actions from '../../actions';
 
+const date = new Date();
+console.log(date.setHours(0, 0, 0, 0));
 
 class CheckIn extends Component {
-
+  constructor (props) {
+    super(props)
+    this.state = {
+      date: moment()
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
   onSubmit(formProps) {
-    this.props.createActivity(formProps);
+    console.log(this.state);
+    console.log(formProps);
+    // this.props.createActivity(formProps);
   }
   componentWillMount(){
-    this.props.fetchActivityTypes();
     this.props.fetchMyEldersList();
+    this.props.fetchActivityTypes();
   }
   
   renderActivityTypes() {
@@ -32,10 +44,10 @@ class CheckIn extends Component {
   }
 
   renderMyEldersList() {
-    if (this.props.myElderList == null) {
+    if (this.props.myelder == null) {
       return <div></div>;
     }
-    const elder = this.props.myElderList.map(elder => {
+    const elder = this.props.myelder.map(elder => {
       return <option key={elder.match_id} name="type_id" value={elder.elder_id} >{elder.elder_fullname}</option>;
     });
     return (
@@ -47,7 +59,16 @@ class CheckIn extends Component {
       </div>
     );
   }
-  
+  renderDate() {
+    return (
+      <DatePicker dateFormat="YYYY-MM-DD" selected={this.state.date} onChange={this.handleChange} />
+    );
+  }
+  handleChange(date) {
+    this.setState({
+      date: date
+    });
+  }
 
   render() {
     const { handleSubmit } = this.props;
@@ -61,7 +82,8 @@ class CheckIn extends Component {
         <div >
           <label>Date</label>
           <div>
-            <Field name="date" component="input" className="form-control" />
+            <Field name="date" component="input" type="text" className="form-control" />
+            <DatePicker dateFormat="YYYY-MM-DD" selected={this.state.date} onChange={this.handleChange} className="form-control" />
           </div>
         </div>
         <div>
@@ -93,10 +115,10 @@ class CheckIn extends Component {
 }
 
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { 
     activityTypes: state.auth.activityTypes, 
-    myElderList: state.auth.myElderList,
+    myelder: state.myelder
   };
 }
 

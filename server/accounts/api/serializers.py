@@ -1,10 +1,9 @@
-from rest_framework.serializers import ModelSerializer
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.db import models
 Volunteer = get_user_model()
 
-class VolunteerSerializer(ModelSerializer):
+class VolunteerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Volunteer
         fields = '__all__'
@@ -20,18 +19,26 @@ class VolunteerSerializer(ModelSerializer):
         volunteer.save()
         return volunteer
 
-class VolunteerLoginSerializer(ModelSerializer):
+class VolunteerLoginSerializer(serializers.ModelSerializer):
     token = models.CharField(blank=True)
     class Meta:
         model = Volunteer
         fields = ['email', 'password', 'token',]
         extra_kwargs = {"password": {"write_only": True}}
 
-class VolunteerProfileSerializer(ModelSerializer):
+class VolunteerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Volunteer
         fields = ['first_name', 'last_name', 'phone', 'hearts', 'badges']
         extra_kwargs = {'password': {'write_only': True}, 'hearts': {'read_only': True}, 'badges': {'read_only': True}}
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
 # class VolunteerDetailAPIView(RetrieveUpdateDestroyAPIView):
 #     queryset = Volunteer.objects.all()
 #     serializer_class = VolunteerSerializer

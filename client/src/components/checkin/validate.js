@@ -1,21 +1,26 @@
 const validate = values => {
   const errors = {}
-  if (!values.firstName) {
-    errors.firstName = 'Required'
+  if (!values.elder) {
+    errors.elder = 'Required'
   }
-  if (!values.lastName) {
-    errors.lastName = 'Required'
+  if (!values.date) {
+    errors.date = 'Required'
   }
-  if (!values.email) {
-    errors.email = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+  if (!values.activity_type) {
+    errors.activity_type = 'Required'
   }
-  if (!values.sex) {
-    errors.sex = 'Required'
+  if (!values.duration) {
+    errors.duration = 'Required'
+  } else if (isNaN(Number(values.duration))) { 
+    errors.duration = 'Must be a number';
+  } else if (Number(values.duration) < 0) {
+    errors.duration = 'It has to be a number greater than zero'
   }
-  if (!values.favoriteColor) {
-    errors.favoriteColor = 'Required'
+  if (!values.dummyok) {
+    errors.dummyok = 'Required'
+  }
+  if (!values.status) {
+    errors.status = 'Required'
   }
   return errors
 }

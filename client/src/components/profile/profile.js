@@ -24,7 +24,10 @@ class Profile extends Component {
             { "Hearts: " + this.props.profile.hearts + " Badges: " + this.props.profile.badges}
           </p>
         </div>
-        <Link to="/profile/edit" className="btn btn-primary">Update Profile</Link>
+        <div>
+          <Link to="/profile/edit" >Update Profile</Link>
+          <Link to="/password" >Update Password</Link>
+        </div>
       </div>
     );
   }
@@ -56,7 +59,7 @@ class Profile extends Component {
           {this.props.myelder.map(this.renderMyElderList)}
           </tbody>
         </table>
-        <Link to="/addelder" className="btn btn-primary">Add an Elder</Link>
+        <Link to="/addelder">Add an Elder</Link>
       </div>
     );
   }

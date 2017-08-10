@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector } from 'redux-form';
+import renderField from '../util/form-helper';
 import validate from './validate';
-// import renderField from './render-field';
 
 class CheckInSecond extends Component {
   constructor(props) {
@@ -22,12 +22,14 @@ class CheckInSecond extends Component {
       <div>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <div >
-            <label>How Long? (hours)</label>
-            <div>
-              <Field name="duration" component="input" type="number" className="form-control" />
-            </div>
+            <Field 
+              label="How Long? (hours)" 
+              name="duration" 
+              component={renderField} 
+              type="number"
+            />
           </div>
-          <div >
+          <div>
             <label>How is the elder?</label>
             <div>
               <label>
@@ -59,4 +61,5 @@ export default connect(mapStateToProps, null)(reduxForm({
   form: 'checkin',
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
+  validate
 })(CheckInSecond));

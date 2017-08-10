@@ -2,25 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import validate from './validate';
-import renderDatePicker from './date-picker';
-// import renderField from './render-field';
+import renderField from '../util/form-helper';
+import renderSelectField from '../util/form-select-helper';
+import renderDatePicker from '../util/date-picker';
 
 class CheckInFirst extends Component {
   renderMyEldersList() {
     if (this.props.myelder == null) {
       return <option>Loading options...</option>;
     }
-    return this.props.myelder.map(elder => {
-      return <option key={elder.elder_id} name="type_id" value={elder.elder_id} >{elder.elder_fullname}</option>;
-    });
+    const options = [<option key={0} value="">Select an elder...</option>];
+    return options.concat(this.props.myelder.map(elder => 
+      <option key={elder.elder_id} value={elder.elder_id} >{elder.elder_fullname}</option>));
   }
   renderActivityTypes() {
     if (this.props.activityTypes == null) {
       return <option>Loading options...</option>;
     }
-    return this.props.activityTypes.map(type => {
-      return <option key={type.type_id} name="type_id" value={type.type_id} >{type.type_name}</option>;
-    });
+    const options = [<option key={0} value="">Select an activity...</option>];
+    return options.concat(this.props.activityTypes.map(type =>
+      <option key={type.type_id} value={type.type_id} >{type.type_name}</option>));
   }
   onSubmit(formProps) {
     this.props.nextPage();
@@ -31,26 +32,27 @@ class CheckInFirst extends Component {
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div >
-            <label>Who did you visit?</label>
-            <Field name="elder" component="select" className="form-control" >
-              <option></option>
-              { this.renderMyEldersList() }
-            </Field>
+            <Field 
+              label="Who did you visit?" 
+              name="elder"
+              component={renderSelectField} 
+              options={this.renderMyEldersList()} 
+            />
           </div>
           <div >
-            <label>When was this?</label>
-            <div className="form-control">
-              <Field name="date" component={renderDatePicker} />
-            </div>
+            <Field 
+              label="When was this?" 
+              name="date" 
+              component={renderDatePicker}
+            />
           </div>
           <div >
-            <label>What type of activity?</label>
-            <div>
-              <Field name="activity_type" component="select" className="form-control" >
-                <option></option>
-                { this.renderActivityTypes() }
-              </Field>
-            </div>
+            <Field 
+              label="What type of activity?" 
+              name="activity_type" 
+              component={renderSelectField} 
+              options={this.renderActivityTypes()} 
+            />
           </div>
           <button type="submit" className="btn">Next</button>
         </form>
@@ -70,4 +72,5 @@ export default connect(mapStateToProps, null)(reduxForm({
   form: 'checkin',
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
+  validate
 })(CheckInFirst));

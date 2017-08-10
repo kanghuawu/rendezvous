@@ -1,21 +1,19 @@
 import React from 'react';
 
-const renderField = (field) => {
+const renderSelectField = (field) => {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
   return (
     <div className={className}>
       <label>{field.label}</label>
-      <input
-        className="form-control"
-        type={field.type}
-        {...field.input}
-      />
+      <select className="form-control" {...field.input} >
+        {field.options}  
+      </select>
       <div className="text-help">
-          {touched ? error : ''}
+        {touched ? error : ''}
       </div>
     </div>
   );
 }
 
-export default renderField
+export default renderSelectField

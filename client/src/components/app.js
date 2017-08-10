@@ -20,7 +20,7 @@ import ProfileEdit from './profile/profile-edit';
 import SearchAddElder from './profile/search-add-elder';
 
 import Welcome from './welcome';
-//  <Route path="/leaderboard" component={RequireAuth(LeaderBoard)} />
+
 export default () => {
   return (
     <div>
@@ -32,7 +32,7 @@ export default () => {
           <Route path="/signup" component={Signup} />
           <Route path="/checkin" component={RequireAuth(CheckIn)} />
           <Route path="/history" component={RequireAuth(History)} />
-
+          <Route path="/leaderboard" component={RequireAuth(LeaderBoard)} />
           <Route path="/profile/edit" component={RequireAuth(ProfileEdit)} />
           <Route path="/profile" component={RequireAuth(Profile)} /> 
           <Route path="/password" component={RequireAuth(UpdatePassword)} />

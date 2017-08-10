@@ -13,7 +13,7 @@ class Header extends Component {
           <Link to="/history" className="nav-link">History</Link>
         </li>,
         <li className="nav-item" key={3}>
-          <Link to="/learderboard" className="nav-link">Leaderboard</Link>
+          <Link to="/leaderboard" className="nav-link">Leaderboard</Link>
         </li>,
         <li className="nav-item" key={4}>
           <Link to="/profile" className="nav-link">Profile</Link>

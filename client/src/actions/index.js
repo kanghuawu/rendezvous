@@ -16,6 +16,8 @@ import {
   UPDATE_PROFILE,
 
   UPDATE_PASSWORD,
+  FETCH_LEADER_BOARD_LIST,
+
 } from './types';
 
 const ROOT_URL = 'http://localhost:8000';
@@ -211,12 +213,26 @@ export const updatePassword = (password, callback) => {
   }
 }
 
-export function fetchLeaderBoard() {
-  return function(dispatch) {
-    axios.get(`${ROOT_URL}/api/leaderboard/`)
-      .then(function (response){
-        console.log(response.data)
+// export function fetchLeaderBoardList() {
+//   return function(dispatch) {
+//     axios.get(`${ROOT_URL}/api/leaderboard/`)
+//       .then(function (response){
+//         console.log(response.data)
+//       })
+//       .catch(function (error){console.log(error)});
+//   }
+// }
+
+export const fetchLeaderBoardList = () => {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/api/leaderboard/`, {
+      headers: { authorization: localStorage.getItem('token')}
+    }).then(response => {
+      dispatch({
+        type: FETCH_LEADER_BOARD_LIST,
+        payload: response.data
       })
-      .catch(function (error){console.log(error)});
+      
+    });
   }
 }

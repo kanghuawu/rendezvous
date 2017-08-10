@@ -18,3 +18,5 @@ export const ADD_ELDERS_LIST = 'add_elder_list';
 export const FETCH_PROFILE = 'fetch_profile';
 export const UPDATE_PROFILE = 'update_profile';
 
+export const FETCH_LEADER_BOARD_LIST = 'fetch_leader_board_list'
+

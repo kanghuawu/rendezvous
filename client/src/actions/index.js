@@ -220,19 +220,3 @@ export function fetchLeaderBoard() {
       .catch(function (error){console.log(error)});
   }
 }
-  /*
-  return function(dispatch) {
-    axios.get(`${ROOT_URL}/api/users/profile/`, 
-      { headers: { authorization: localStorage.getItem('token')}}
-      )
-      .then(response => {
-        dispatch({
-          type: FETCH_PROFILE,
-          payload: response.data
-        })
-      })
-      .catch(response => {
-        console.log(response);
-      });
-  }
-}*/

@@ -13,12 +13,14 @@ import History from './history/history-list';
 
 import CheckIn from './checkin/checkin';
 
+import LeaderBoard from './leaderboard/leaderboard'
+
 import Profile from './profile/profile';
 import ProfileEdit from './profile/profile-edit';
 import SearchAddElder from './profile/search-add-elder';
 
 import Welcome from './welcome';
-
+//  <Route path="/leaderboard" component={RequireAuth(LeaderBoard)} />
 export default () => {
   return (
     <div>
@@ -30,6 +32,7 @@ export default () => {
           <Route path="/signup" component={Signup} />
           <Route path="/checkin" component={RequireAuth(CheckIn)} />
           <Route path="/history" component={RequireAuth(History)} />
+
           <Route path="/profile/edit" component={RequireAuth(ProfileEdit)} />
           <Route path="/profile" component={RequireAuth(Profile)} /> 
           <Route path="/password" component={RequireAuth(UpdatePassword)} />

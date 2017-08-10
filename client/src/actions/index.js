@@ -215,7 +215,9 @@ export const updatePassword = (password, callback) => {
 
 // export function fetchLeaderBoardList() {
 //   return function(dispatch) {
-//     axios.get(`${ROOT_URL}/api/leaderboard/`)
+//     axios.get(`${ROOT_URL}/api/leaderboard/`, {
+//       headers: { authorization: localStorage.getItem('token')}
+//     })
 //       .then(function (response){
 //         console.log(response.data)
 //       })
@@ -232,7 +234,6 @@ export const fetchLeaderBoardList = () => {
         type: FETCH_LEADER_BOARD_LIST,
         payload: response.data
       })
-      
     });
   }
 }

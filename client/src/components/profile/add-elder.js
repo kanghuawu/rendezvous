@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import { addEldersList } from '../../actions';
 import CheckboxGroup from './checkbox-group';
@@ -9,6 +9,7 @@ import CheckboxGroup from './checkbox-group';
 class AddElder extends Component {
   onSubmit(addElder, formProps) {
     if (addElder && formProps.addelders.length != 0) {
+      alert('You just added ' + formProps.addelders.length + 'elder(s)!');
       this.props.addEldersList(formProps, () => this.props.history.push('/profile'));
     }
   }
@@ -38,14 +39,23 @@ class AddElder extends Component {
   }
 }
 
+const validate = values => {
+  const errors = {};
+  if (!values.addelders) {
+    errors.addelders = '';
+  } else if (values.addelders.length == 0) {
+    errors.addelders = 'Please select at least an elder';
+  }
+  return errors;
+}
 
-
-function mapStatesToProps(state) {
+const mapStatesToProps = (state) => {
   return ({
     searchList: state.search
   });
 }
 
 export default withRouter(connect(mapStatesToProps, { addEldersList })(reduxForm({
-  form: 'addmylist'
+  form: 'addmylist',
+  validate
 })(AddElder)));

@@ -30,19 +30,17 @@ export default class CheckboxGroup extends Component {
         return onChange(arr);
       };
       const checked = inputValue.includes(value);
-      // console.log(label);
-      // console.log(name);
       return (
         <div key={`checkbox-${index}`} className="form-control">
           <label key={`checkbox-${index}`}>
             <input type="checkbox" name={`${name}[${index}]`} value={value} checked={checked} onChange={handleChange} />
-            <span>{label}</span>
+            <span>{ " " + label}</span>
           </label>
         </div>
 
       );
     });
-
+    console.log(error);
     return (
       <div>
         <div>{checkboxes}</div>

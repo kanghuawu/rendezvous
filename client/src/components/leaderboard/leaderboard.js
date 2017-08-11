@@ -7,16 +7,16 @@ class LeaderBoard extends Component {
   componentWillMount(){
     this.props.fetchLeaderBoardList();
   }
-  renderLeaderBoard(){
+  renderLeaderBoard(leaderboard){
     return (
-      <tr key={this.props.leaderboard.leaderboard_id}>
-        <td>{this.props.leaderboard.first_name}</td>
-        <td>{this.props.leaderboard.hours}</td>
+      <tr key={leaderboard.leaderboard_id}>
+        <td>{leaderboard.first_name}</td>
+        <td>{leaderboard.hours}</td>
       </tr>
     );
 
   }
-// 38: {this.props.leaderboard.map(this.renderLeaderBoard)}
+// 38: {this.renderLeaderBoard()}
   render() {
         if (this.props.leaderboard == null) {
       return <div>Loading...here</div>;
@@ -32,7 +32,7 @@ class LeaderBoard extends Component {
             </tr>
           </thead>
           <tbody>
-          {this.renderLeaderBoard()}
+          {this.props.leaderboard.map(this.renderLeaderBoard)}
           </tbody>
         </table>
       </div>

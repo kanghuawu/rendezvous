@@ -46,24 +46,24 @@ class SignUp extends Component {
   }
 }
 
-function validate(formProps) {
+const validate = (value) => {
   const errors = {};
-  if(!formProps.email){
+  if(!value.email){
     errors.email = 'Please enter an email';
   }
-  if(!formProps.password){
+  if(!value.password){
     errors.password = 'Please enter a password';
   }
-  if(!formProps.passwordConfirm){
+  if(!value.passwordConfirm){
     errors.passwordConfirm = 'Please enter a password confirmation';
   }
-  if(formProps.password != formProps.passwordConfirm){
+  if(value.password != value.passwordConfirm){
     errors.passwordConfirm = 'Password must match';
   }
   return errors;
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { errorMessage: state.auth.error };
 }
 

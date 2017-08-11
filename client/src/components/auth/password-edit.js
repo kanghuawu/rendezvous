@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { updatePassword } from '../../actions';
-import { renderField } from './form-helper';
+import renderField from '../util/form-helper';
 
 class UpdatePassword extends Component {
   handleFormSubmit(formProps) {
@@ -40,7 +40,6 @@ class UpdatePassword extends Component {
           component={renderField} 
           type="password" 
         />
-        {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Submit</button>
         <Link to="/profile" className="btn btn-secondary">Cancel</Link>
       </form>
@@ -48,7 +47,24 @@ class UpdatePassword extends Component {
   }
 }
 
+const validate = (value) => {
+  const errors = {};
+  if(!value.old_password){
+    errors.old_password = 'Required';
+  }
+  if(!value.new_password){
+    errors.new_password = 'Required';
+  }
+  if(!value.new_passwordConfirm){
+    errors.new_passwordConfirm = 'Required';
+  }
+  if(value.new_password != value.new_passwordConfirm){
+    errors.new_passwordConfirm = 'Password must match';
+  }
+  return errors;
+}
 
 export default connect(null, { updatePassword })(reduxForm({
-  form: 'updatepassword'
+  form: 'updatepassword',
+  validate,
 })(UpdatePassword));

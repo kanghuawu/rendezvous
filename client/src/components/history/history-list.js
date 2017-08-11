@@ -7,17 +7,13 @@ class History extends Component{
     this.props.fetchActivities();
   }
 	
-  renderList() {
-    return this.props.activities.results.map((activity) => {
-      return (
-          <li
-            key={activity.activity_id}
-            //onClick={() => this.props.selectActivity(activity.activity_id)}
-            className="list-group-item">
-            {activity.date} - {activity.elder_fullname}
-          </li>
-        );
-    });
+  renderHistoryList(activity) {
+    return (
+      <tr key={activity.activity_id}>
+        <td>{activity.date}</td>
+        <td>{activity.elder_fullname}</td>
+      </tr>
+    );
   }
   handleClickPrevious() {
     this.props.fetchActivities(this.props.activities.previous);
@@ -33,7 +29,17 @@ class History extends Component{
   	}
     return (
       <div>
-        {this.renderList()}
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Elder</th>
+            </tr>
+          </thead>
+          <tbody>
+          {this.props.activities.results.map(this.renderHistoryList)}
+          </tbody>
+        </table>
         <button className="btn btn-default" disabled={!this.props.activities.previous} onClick={this.handleClickPrevious.bind(this)}>Previous</button>
         <button className="btn btn-default" disabled={!this.props.activities.next} onClick={this.handleClickNext.bind(this)}>Next</button>
       </div>

@@ -42,7 +42,7 @@ class SignIn extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = (state) => {
   return { errorMessage: state.auth.error };
 }
 

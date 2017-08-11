@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import * as actions from '../../actions';
+import {fetchLeaderBoardList} from '../../actions';
 
 class LeaderBoard extends Component {
   componentWillMount(){
     this.props.fetchLeaderBoardList();
   }
-  renderLeaderBoard(leaderboard){
+  renderLeaderBoard(board){
+    console.log("here!")
     return (
-      <tr key={leaderboard.leaderboard_id}>
-        <td>{leaderboard.first_name}</td>
-        <td>{leaderboard.hours}</td>
+      <tr key={board.leaderboard_id}>
+        <td>{board.first_name}</td>
+        <td>{board.hours}</td>
       </tr>
     );
 
@@ -19,7 +20,7 @@ class LeaderBoard extends Component {
 // 38: {this.renderLeaderBoard()}
   render() {
         if (this.props.leaderboard == null) {
-      return <div>Loading...here</div>;
+      return <div>Loading...</div>;
     }
     return (
       <div>
@@ -45,5 +46,5 @@ const mapStateToProps = (state) => {
     leaderboard: state.leaderboard
   }
 }
-export default connect(mapStateToProps, actions)(LeaderBoard);
+export default connect(mapStateToProps, {fetchLeaderBoardList})(LeaderBoard);
 

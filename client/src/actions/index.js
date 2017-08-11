@@ -11,12 +11,12 @@ import {
   CLEAR_SEARCH,
   SEARCH_LIST,
   ADD_ELDERS_LIST,
-  
+  FETCH_LEADER_BOARD_LIST,
+
   FETCH_PROFILE,
   UPDATE_PROFILE,
 
   UPDATE_PASSWORD,
-  FETCH_LEADER_BOARD_LIST,
 
 } from './types';
 
@@ -128,6 +128,18 @@ export const fetchMyEldersList = () => {
     });
   }
 }
+// export function fetchMyEldersList() {
+//   return function(dispatch) {
+//     axios.get(`${ROOT_URL}/api/elders/mylist/`, {
+//       headers: { authorization: localStorage.getItem('token')}
+//     })
+//       .then(function (response){
+//         console.log(response.data)
+//       })
+//       .catch(function (error){console.log(error)});
+//   }
+// }
+
 
 // search
 

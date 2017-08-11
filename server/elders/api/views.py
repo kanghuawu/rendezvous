@@ -21,7 +21,7 @@ class ElderListAPIView(ListAPIView, CreateAPIView):
 
     def get_queryset(self):
         volunteer_elderlist = ElderVolunteer.objects.filter(volunteer = self.request.user)
-        queryset = Elder.objects.exclude(elder_id__in = [match.elder_id for match in volunteer_elderlist])        
+        queryset = Elder.objects.exclude(elder_id__in = [match.elder_id for match in volunteer_elderlist])
         elder_firstname = self.request.query_params.get('firstname', None)
         elder_lastname = self.request.query_params.get('lastname', None)
         elder_phone = self.request.query_params.get('phone', None)

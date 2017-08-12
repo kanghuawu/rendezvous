@@ -8,7 +8,6 @@ class LeaderBoard extends Component {
     this.props.fetchLeaderBoardList();
   }
   renderLeaderBoard(board){
-    console.log("here!")
     return (
       <tr key={board.leaderboard_id}>
         <td>{board.first_name}</td>

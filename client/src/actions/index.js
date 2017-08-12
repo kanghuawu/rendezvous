@@ -128,6 +128,7 @@ export const fetchMyEldersList = () => {
     });
   }
 }
+
 // export function fetchMyEldersList() {
 //   return function(dispatch) {
 //     axios.get(`${ROOT_URL}/api/elders/mylist/`, {
@@ -236,6 +237,8 @@ export const updatePassword = (password, callback) => {
 //       .catch(function (error){console.log(error)});
 //   }
 // }
+
+// leaderboard
 
 export const fetchLeaderBoardList = () => {
   return (dispatch) => {

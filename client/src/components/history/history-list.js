@@ -29,6 +29,14 @@ class History extends Component{
   	}
     return (
       <div>
+        <h3>Your Contribution</h3>
+        <div>
+          <h5>Summary</h5>
+          <ul>
+            <li>Last Week: {this.props.activities.last_week || 0} hours</li>
+            <li>Last Month: {this.props.activities.last_month || 0} hours</li>
+          </ul>
+        </div>
         <table className="table table-hover">
           <thead>
             <tr>

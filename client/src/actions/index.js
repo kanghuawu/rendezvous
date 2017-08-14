@@ -206,6 +206,7 @@ export const updatePassword = (password, callback) => {
       localStorage.removeItem('token');
       localStorage.setItem('token', 'JWT ' + response.data.token);
       callback();
+      alert("Your password has been changed!")
     }).catch(response => {
       console.log(response);
     });

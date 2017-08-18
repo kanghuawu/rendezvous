@@ -9,13 +9,13 @@ export default (ComposedComponent) => {
 
     componentWillMount() {
       if (!this.props.authenticated) {
-        this.props.history.push('/');
+        this.props.history.push('/signin');
       }
     }
 
     componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
-        this.props.history.push('/');
+        this.props.history.push('/signin');
       }
     }
 

@@ -6,38 +6,63 @@ const VENDOR_LIBS = [
   'axios', 'lodash', 'moment', 'react', 'react-datepicker', 'react-dom', 
   'react-redux', 'react-router', 'react-router-dom', 'redux', 'redux-form', 'redux-thunk'
 ];
-
 module.exports = {
-  entry: {
-    bundle: './src/index.js',
-    vendor: VENDOR_LIBS
-  },
+  entry: [
+    './src/index.js'
+  ],
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: '[name].[chunkhash].js'
+    path: __dirname,
+    publicPath: '/',
   },
   module: {
-    rules: [
-      {
-        use: 'babel-loader',
-        test: /\.js$/,
-        exclude: /node_modules/
-      },
-      {
-        use: ['style-loader', 'css-loader'],
-        test: /\.css$/
+    loaders: [{
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        presets: ['react', 'es2015', 'stage-0']
       }
-    ]
+    }]
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  ]
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './'
+  }
 };
+
+// module.exports = {
+//   entry: {
+//     bundle: './src/index.js',
+//     // vendor: VENDOR_LIBS
+//   },
+//   output: {
+//     path: path.join(__dirname, 'build'),
+//     filename: '[name].[chunkhash].js'
+//   },
+//   module: {
+//     rules: [
+//       {
+//         use: 'babel-loader',
+//         test: /\.js$/,
+//         exclude: /node_modules/
+//       },
+//       {
+//         use: ['style-loader', 'css-loader'],
+//         test: /\.css$/
+//       }
+//     ]
+//   },
+//   plugins: [
+//     new webpack.optimize.CommonsChunkPlugin({
+//       names: ['vendor', 'manifest']
+//     }),
+//     new HtmlWebpackPlugin({
+//       template: 'src/index.html'
+//     }),
+//     new webpack.DefinePlugin({
+//       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+//     })
+//   ]
+// };

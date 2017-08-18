@@ -22,6 +22,7 @@ class SignIn extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
+      <div className="col-sm-12 col-lg-6">
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <Field 
           label="E-Mail:" 
@@ -38,8 +39,20 @@ class SignIn extends Component {
         {this.renderAlert()}
         <button type="submit" className="btn btn-primary">Sign In</button>
       </form>
+      </div>
     )
   }
+}
+
+const validate = (value) => {
+  const errors = {};
+  if(!value.email){
+    errors.email = 'Required';
+  }
+  if(!value.password){
+    errors.password = 'Required';
+  }
+  return errors;
 }
 
 const mapStateToProps = (state) => {
@@ -47,6 +60,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, actions)(reduxForm({ 
-  form: 'signin' 
+  form: 'signin',
+  validate
 })(SignIn));
 

@@ -9,7 +9,7 @@ class ProfileEdit extends Component {
     this.props.fetchProfile();
   }
   onSubmit(formProps) {
-    this.props.updateProfile(formProps, () => this.props.history.push('/profile'));
+    this.props.updateProfile(formProps);
     
   }
   render() {

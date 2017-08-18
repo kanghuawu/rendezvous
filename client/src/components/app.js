@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Header from './header';
+import Footer from './footer';
 
 import Signin from './auth/signin';
 import Signout from './auth/signout';
@@ -24,7 +25,7 @@ export default () => {
   return (
     <div>
       <Header />
-      <div>
+      <div className="wrapper">
         <Switch>
           <Route path="/signin" component={Signin} />
           <Route path="/signout" component={Signout} />
@@ -39,6 +40,8 @@ export default () => {
           <Route path="/" component={Welcome} />
         </Switch>
       </div>
+      <div className="push"></div>
+      <Footer />
     </div>
   );
 

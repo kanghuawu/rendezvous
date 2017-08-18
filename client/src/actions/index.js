@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { destroy } from 'redux-form';
+// import { hashHistory } from 'react-router-dom';
 import { 
   AUTH_USER, 
   UNAUTH_USER, 

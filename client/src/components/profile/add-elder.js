@@ -10,7 +10,7 @@ class AddElder extends Component {
   onSubmit(addElder, formProps) {
     if (addElder && formProps.addelders.length != 0) {
       alert('You just added ' + formProps.addelders.length + 'elder(s)!');
-      this.props.addEldersList(formProps, () => this.props.history.push('/profile'));
+      this.props.addEldersList(formProps);
     }
   }
   renderSearchList() {

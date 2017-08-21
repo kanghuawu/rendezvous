@@ -35,7 +35,7 @@ class SearchElder extends Component {
       <div className="col-sm-12 col-md-3">
         <div className="card signin-card">
           <div className="card-body">
-            <h3>Search</h3>
+            <h3 className="card-title">Search</h3>
             <form>
               <div>
                 <Field
@@ -61,7 +61,7 @@ class SearchElder extends Component {
                 />
               </div>
               <button
-                className="btn btn-primary"
+                className="btn profile-btn"
                 onClick={handleSubmit(this.onSubmit.bind(this, searchElder))}
               >
                 Search

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 import validate from "./validate";
 import renderField from "../util/form-helper";
 import renderSelectField from "../util/form-select-helper";
@@ -49,6 +50,7 @@ class CheckInFirst extends Component {
   }
   render() {
     const { handleSubmit } = this.props;
+    console.log(Object.getOwnPropertyNames(this.props.myelder).length);
     return (
       <div>
         <form
@@ -58,6 +60,11 @@ class CheckInFirst extends Component {
           <h3>Step 1</h3>
           <img src="assets/oldlady-icon.png" className="img-fluid signin-img" />
           <div>
+            {Object.getOwnPropertyNames(this.props.myelder).length === 0 &&
+              <div className="text-danger">
+                Hmm... seems you don't have an elder in your list yet. Go {" "}
+                <Link to="/addelder">here</Link> to get started.
+              </div>}
             <Field
               label="Whom did you visit?"
               name="elder"

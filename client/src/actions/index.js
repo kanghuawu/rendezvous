@@ -12,10 +12,14 @@ import {
   DELETE_ELDER_LIST,
   CLEAR_SEARCH,
   SEARCH_LIST,
+  DESELECT_SEARCH,
   ADD_ELDERS_LIST,
   FETCH_PROFILE,
   UPDATE_PROFILE,
-  UPDATE_PASSWORD
+  UPDATE_PASSWORD,
+  SELECT_ELDER,
+  DESELECT_ELDER,
+  RESET_SELECTION
 } from "./types";
 
 const ROOT_URL = "http://localhost:8000";
@@ -188,17 +192,14 @@ export const clearSearch = () => {
   return dispatch => dispatch({ type: CLEAR_SEARCH });
 };
 
-export const addEldersList = (elderList, callback) => {
+export const addEldersList = elderList => {
   return dispatch => {
     axios
       .post(`${ROOT_URL}/api/elders/mylist/add/`, elderList, {
         headers: { authorization: localStorage.getItem("token") }
       })
       .then(response => {
-        dispatch({
-          type: CLEAR_SEARCH
-        });
-        callback();
+        dispatch({type: DESELECT_SEARCH, payload: elderList});
       })
       .catch(response => {
         console.log(response);
@@ -264,4 +265,17 @@ export const updatePassword = (password, callback) => {
         console.log(response);
       });
   };
+};
+
+// select
+export const selectElder = id => {
+  return { type: SELECT_ELDER, payload: id };
+};
+
+export const deselectElder = id => {
+  return { type: DESELECT_ELDER, payload: id };
+};
+
+export const resetSelection = id => dispatch => {
+  return { type: RESET_SELECTION };
 };

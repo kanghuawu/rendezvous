@@ -23,7 +23,7 @@
 }
 
 .fa {
-  margin: 10px;
+  margin: 5px;
 }
 
 .fa-facebook-square, .fa-twitter {
@@ -41,7 +41,8 @@
 }
 
 .jumbotron {
-  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
   background: none;
 }
 
@@ -156,8 +157,8 @@ button.history-nxt-btn {
 
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 button.profile-btn {
@@ -167,9 +168,15 @@ button.profile-btn {
 }
 
 .search-result {
-  min-height: 500px !important;
-  padding: 40px 0px 20px;
+  min-height: 600px;
+  padding: 20px 20px 20px 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
   -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+}
+
+.list-group-search {
+  padding: 0px;
+  padding: 0px;
+  margin: auto;
 }

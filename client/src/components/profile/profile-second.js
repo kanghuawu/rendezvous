@@ -13,7 +13,7 @@ class ProfileSecond extends Component {
     this.props.fetchMyEldersList();
   }
 
-  renderMyElderList(elder) {
+  renderMyElderList() {
     return _.map(this.props.myelder, elder => {
       return (
         <tr key={elder.match_id}>

@@ -8,6 +8,7 @@ export const FETCH_ACTIVITY_TYPES = 'fetch_activity_types';
 
 // my elders
 export const FETCH_ELDER_LIST = 'fetch_elder_list';
+export const DELETE_ELDER_LIST = 'delete_elder_list';
 
 // search
 export const SEARCH_LIST = 'search_list';

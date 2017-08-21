@@ -20,8 +20,10 @@ class CheckInSecond extends Component {
     const { handleSubmit, previousPage } = this.props;
     return (
       <div>
-        <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-          <div >
+        <form className="sigin-form" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
+          <h3>Step 2</h3>
+          <div>
+            <img src="assets/clock.png" className="img-fluid signin-img" />
             <Field 
               label="How Long? (hours)" 
               name="duration" 
@@ -29,21 +31,28 @@ class CheckInSecond extends Component {
               type="number"
             />
           </div>
-          <div>
-            <label>How is the elder?</label>
+          <div className="form-group">
+            <label>How was the elder?</label>
             <div>
-              <label>
-                <Field name="dummyok" component="input" type="radio" value="ok" className="form-control" />OK
+              <div className="row">
+              <label className="form-check-label">
+                <Field name="dummyok" component="input" type="radio" value="ok" className="form-check-input" /> OK 
               </label>
-              <br/>
-              <label>
-                <Field name="dummyok" component="input" type="radio" value="not" className="form-control" />Not OK
+              <img src="assets/happy-granny.png" className="img-fluid signin-img" />
+              </div>
+
+              <div className="row">
+              <label className="form-check-label">
+                <Field name="dummyok" component="input" type="radio" value="not" className="form-check-input" /> Not OK
               </label>
+              <img src="assets/upset-granny.png" className="img-fluid signin-img" />
+              </div>
             </div>
           </div>
-          <button type="button" className="btn" onClick={previousPage}>Previous</button>
-          {this.props.dummyok === "ok" && <button type="submit" className="btn">Reacy to Check In</button>}
-          {this.props.dummyok === "not" && <button type="submit" className="btn">Not Ok? Add Some Note</button>}
+          <button type="button" className="btn checkin-prev-btn btn-lg" onClick={previousPage}>Previous</button>
+
+          {this.props.dummyok === "ok" && <button type="submit" className="btn checkin-nxt-btn btn-lg">Check In</button>}
+          {this.props.dummyok === "not" && <button type="submit" className="btn checkin-nxt-btn btn-lg">Not Ok?</button>}
         </form>
       </div>
     );

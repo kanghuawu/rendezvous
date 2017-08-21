@@ -1,39 +1,50 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import _ from 'lodash';
-import { withRouter } from 'react-router-dom';
-import { reduxForm, Field } from 'redux-form';
-import { addEldersList } from '../../actions';
-import CheckboxGroup from './checkbox-group';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import _ from "lodash";
+import { withRouter } from "react-router-dom";
+import { reduxForm, Field } from "redux-form";
+import { addEldersList } from "../../actions";
+import CheckboxGroup from "./checkbox-group";
 
 class AddElder extends Component {
   onSubmit(addElder, formProps) {
     if (addElder && formProps.addelders.length != 0) {
-      alert('You just added ' + formProps.addelders.length + 'elder(s)!');
+      alert("You just added " + formProps.addelders.length + " elder(s)!");
       this.props.addEldersList(formProps);
     }
   }
   renderSearchList() {
     return _.map(this.props.searchList, elder => {
-      return ({
+      return {
         label: elder.first_name + " " + elder.last_name + " " + elder.phone,
         value: elder.elder_id.toString()
-      })
+      };
     });
   }
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
     const addElder = true;
-    if (this.props.searchList == null) {
-      return <div></div>;
-    }
+
     return (
-      <div>
-        <h3>Add an Elder to your List</h3>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this, addElder))}>
-          <CheckboxGroup name="addelders" options={this.renderSearchList()} />
-          <button className="btn btn-default" disabled={pristine || submitting} >Add Elders To My List</button>
-        </form>
+      <div className="col-sm-12 col-md-9">
+        <div className="card search-result">
+          <div className="card-body">
+            <h3>Result</h3>
+            {this.props.searchList &&
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this, addElder))}>
+                <CheckboxGroup
+                  name="addelders"
+                  options={this.renderSearchList()}
+                />
+                <button
+                  className="btn btn-default"
+                  disabled={pristine || submitting}
+                >
+                  Add To My List
+                </button>
+              </form>}
+          </div>
+        </div>
       </div>
     );
   }
@@ -42,20 +53,24 @@ class AddElder extends Component {
 const validate = values => {
   const errors = {};
   if (!values.addelders) {
-    errors.addelders = '';
+    errors.addelders = "";
   } else if (values.addelders.length == 0) {
-    errors.addelders = 'Please select at least an elder';
+    errors.addelders = "Please select at least an elder";
   }
   return errors;
-}
+};
 
-const mapStatesToProps = (state) => {
-  return ({
+const mapStatesToProps = state => {
+  return {
     searchList: state.search
-  });
-}
+  };
+};
 
-export default withRouter(connect(mapStatesToProps, { addEldersList })(reduxForm({
-  form: 'addmylist',
-  validate
-})(AddElder)));
+export default withRouter(
+  connect(mapStatesToProps, { addEldersList })(
+    reduxForm({
+      form: "addmylist",
+      validate
+    })(AddElder)
+  )
+);

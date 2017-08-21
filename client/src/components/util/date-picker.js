@@ -10,8 +10,8 @@ const renderDatePicker = (field) => {
   return (
     <div className={className}>
       <label >{field.label}</label>
-      <DatePicker {...input} dateFormat="YYYY-MM-DD" selected={input.value ? moment(input.value, "YYYY-MM-DD") : null}/>
-      <div className="text-help">
+      <DatePicker {...input} className="form-control is-valid" dateFormat="YYYY-MM-DD" selected={input.value ? moment(input.value, "YYYY-MM-DD") : null}/>
+      <div className="error">
         {touched ? error : ''}
       </div>
     </div> 

@@ -6,9 +6,11 @@ import AddElder from './add-elder';
 export default () => {
   return (
     <div>
-      <Link to="/profile" >Return to Profile</Link>
+      <img src="assets/search-icon.png" className="img-fluid signin-img" />
+      <div className="row">
       <SearchElder />
       <AddElder />
+      </div>
     </div>
   );
 }

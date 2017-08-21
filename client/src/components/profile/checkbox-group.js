@@ -34,13 +34,12 @@ export default class CheckboxGroup extends Component {
         <div key={`checkbox-${index}`} className="form-control">
           <label key={`checkbox-${index}`}>
             <input type="checkbox" name={`${name}[${index}]`} value={value} checked={checked} onChange={handleChange} />
-            <span>{ " " + label}</span>
+            <span><strong>{ " " + label}</strong></span>
           </label>
         </div>
 
       );
     });
-    console.log(error);
     return (
       <div>
         <div>{checkboxes}</div>

@@ -20,28 +20,46 @@ class SignUp extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <Field 
-          label="E-Mail:" 
-          name="email" 
-          component={renderField} 
-          type="email" 
-        />
-        <Field 
-          label="Password:" 
-          name="password" 
-          component={renderField} 
-          type="password" 
-        />
-        <Field 
-          label="Confirm Password:" 
-          name="passwordConfirm" 
-          component={renderField} 
-          type="password" 
-        />
-        {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Sign up!</button>
-      </form>
+      <div className="container signin-container">
+        <div className="row">
+          <div className="col"></div>
+          <div className="col-sm-12 col-md-8">
+            <div className="card signin-card">
+              <div className="card-body">
+                <img src="assets/LBFE-logo-small.png" className="img-fluid signin-img" />
+                <div className="row">
+                <div className="col-sm-12 col-lg-3"></div>
+                <div className="col-sm-12 col-lg-6">
+                  <form className="sigin-form" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                    <Field 
+                      label="E-Mail:" 
+                      name="email" 
+                      component={renderField} 
+                      type="email" 
+                    />
+                    <Field 
+                      label="Password:" 
+                      name="password" 
+                      component={renderField} 
+                      type="password" 
+                    />
+                    <Field 
+                      label="Confirm Password:" 
+                      name="passwordConfirm" 
+                      component={renderField} 
+                      type="password" 
+                    />
+                    {this.renderAlert()}
+                    <button action="submit" className="btn signin-btn btn-lg">Sign up!</button>
+                  </form>
+                </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div className="col"></div>
+        </div>
+      </div>
     );
   }
 }

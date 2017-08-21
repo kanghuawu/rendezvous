@@ -1,32 +1,25 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-.error {
+.error  {
   color: red;
 }
 
-.signIn {
-
-}
-
-.sectionLight {
-  background-color: #eceeef;
-  padding: 2rem;
-}
-
-.jumbotron {
-  text-align: center;
-  background: none;
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 950px;
 }
 
 .navbar {
-    background-color: #ffab99;
+  margin-bottom: 20px;
+  background-color: #ffab99;
 }
 
 .footer {
   background-color: #ffab99;
+  margin-top: 20px;
+}
+
+.footerCol {
+  padding: 20px 20px 0px 30px;
 }
 
 .fa {
@@ -42,24 +35,35 @@ html, body {
 }
 
 
-body.sigin-body {
-  background-color: #e6f2ff;
+.sectionLight {
+  background-color: #eceeef;
+  padding: 2rem;
+}
+
+.jumbotron {
+  text-align: center;
+  background: none;
+}
+
+.form-check-label {
+  /*vertical-align: baseline;*/
+  vertical-align: middle;
 }
 
 .container.signin-container {
-  margin-top: 8%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .card.signin-card {
   padding: 40px 0px 20px;
-  background-color: #f4f4f4;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
   -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
 }
 
 img.signin-img {
-  padding: 0 2rem 2rem;
+  padding: 0rem 2rem 2rem;
   margin: auto;
   display: block;
 }
@@ -76,9 +80,96 @@ button.signin-btn {
   margin-bottom: 1.2rem;
 }
 
+button.checkin-prev-btn {
+  color: #ffffff;
+  background-color: #bababa;
+  width: 50%;
+  margin-bottom: 1.2rem;
+}
+
+button.checkin-nxt-btn {
+  color: #ffffff;
+  background-color: #d64829;
+  width: 50%;
+  margin-bottom: 1.2rem;
+}
+
 a.create-new-account {
   font-size: 1.2rem;
   text-align: center;
   display: block;
   margin-top: 15px;
+}
+
+img.checkfinished-img {
+  padding: 2rem 2rem 2rem;
+  margin: auto;
+  display: block;
+}
+
+.list-group-item:hover {
+  background-color: #eee;
+}
+
+.list-group {
+  max-width: 550px;
+  margin: auto;
+}
+
+button.history-prev-btn {
+  color: #ffffff;
+  background-color: #bababa;
+  width: 50%;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+button.history-nxt-btn {
+  color: #ffffff;
+  background-color: #d64829;
+  width: 50%;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.history-btn {
+  max-width: 550px;
+  margin: auto;
+}
+
+.history-detail {
+  max-width: 550px;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.loader {
+  margin: auto;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 60;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+button.profile-btn {
+  color: #ffffff;
+  background-color: #d64829;
+  margin: 0.5rem;
+}
+
+.search-result {
+  min-height: 500px !important;
+  padding: 40px 0px 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
 }

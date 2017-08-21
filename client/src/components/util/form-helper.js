@@ -1,21 +1,24 @@
-import React from 'react';
+import React from "react";
 
-const renderField = (field) => {
+const renderField = field => {
   const { meta: { touched, error } } = field;
-  const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+  const className = `form-group ${touched && error ? "has-danger" : ""}`;
   return (
     <div className={className}>
-      <label>{field.label}</label>
+      <label>
+        {field.label}
+      </label>
       <input
-        className="form-control"
+        className="form-control is-valid"
         type={field.type}
+        placeholder={field.placeholder}
         {...field.input}
       />
-      <div className="text-help">
-          {touched ? error : ''}
+      <div className="invalid-feedback">
+        {touched ? error : ""}
       </div>
     </div>
   );
-}
+};
 
-export default renderField
+export default renderField;

@@ -1,11 +1,9 @@
 import { AUTH_USER, 
   UNAUTH_USER, 
   AUTH_ERROR, 
-  FETCH_ACTIVITIES,
-  FETCH_ACTIVITY_TYPES,
 } from '../actions/types';
 
-export default function(state = {}, action) {
+export default (state = {}, action) => {
   switch(action.type) {
     case AUTH_USER:
       return { ...state, error: '', authenticated: true };
@@ -13,11 +11,7 @@ export default function(state = {}, action) {
       return { ...state, authenticated: false };
     case AUTH_ERROR:
       return { ...state, error: action.payload };
-    case FETCH_ACTIVITIES:
-      return { ...state, activities: action.payload};
-    case FETCH_ACTIVITY_TYPES:
-      return { ...state, activityTypes: action.payload};
-    default: 
+    default:
       return state;
   }
 }

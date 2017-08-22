@@ -23,5 +23,8 @@ class Activity(models.Model):
     activity_type = models.ForeignKey('ActivityType',on_delete = models.SET_NULL, null = True)
     duration = models.SmallIntegerField()
     date = models.DateField(auto_now_add=False, blank = True)
-    status = models.CharField(max_length=10, blank = True)
+    status = models.CharField(default='OK', max_length=10, blank = True)
+    notes = models.CharField(max_length=500, blank = True)
     
+    def getVolunteerName(self):
+        return self.volunteer.full_name

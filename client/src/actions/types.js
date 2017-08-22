@@ -8,9 +8,11 @@ export const FETCH_ACTIVITY_TYPES = 'fetch_activity_types';
 
 // my elders
 export const FETCH_ELDER_LIST = 'fetch_elder_list';
+export const DELETE_ELDER_LIST = 'delete_elder_list';
 
 // search
 export const SEARCH_LIST = 'search_list';
+export const DESELECT_SEARCH = 'deselect_search';
 export const CLEAR_SEARCH = 'clear_search';
 export const ADD_ELDERS_LIST = 'add_elder_list';
 
@@ -19,4 +21,8 @@ export const FETCH_PROFILE = 'fetch_profile';
 export const UPDATE_PROFILE = 'update_profile';
 
 export const FETCH_LEADER_BOARD_LIST = 'fetch_leader_board_list'
+
+// select elder
+export const SELECT_ELDER = 'select_elder';
+export const DESELECT_ELDER = 'deselect_elder';
 

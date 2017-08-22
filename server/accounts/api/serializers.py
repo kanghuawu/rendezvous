@@ -19,6 +19,7 @@ class VolunteerSerializer(serializers.ModelSerializer):
         volunteer.save()
         return volunteer
 
+
 class VolunteerLoginSerializer(serializers.ModelSerializer):
     token = models.CharField(blank=True)
     class Meta:
@@ -32,6 +33,7 @@ class VolunteerProfileSerializer(serializers.ModelSerializer):
         fields = ['first_name', 'last_name', 'phone', 'hearts', 'badges']
         extra_kwargs = {'password': {'write_only': True}, 'hearts': {'read_only': True}, 'badges': {'read_only': True}}
 
+
 class ChangePasswordSerializer(serializers.Serializer):
     """
     Serializer for password change endpoint.
@@ -39,11 +41,3 @@ class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
 
-# class VolunteerDetailAPIView(RetrieveUpdateDestroyAPIView):
-#     queryset = Volunteer.objects.all()
-#     serializer_class = VolunteerSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def get_queryset(self, *args, **kwargs):
-#         queryset_list = Activity.objects.all().filter(user = self.request.user)
-#         return queryset_list

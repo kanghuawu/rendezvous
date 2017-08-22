@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import HistoryDetail from "./history-detail";
+import * as actions from "../../actions";
 
-class History extends Component{
-  componentWillMount(){
+class History extends Component {
+  componentWillMount() {
     this.props.fetchActivities();
   }
-	
-  renderList() {
-    return this.props.activities.results.map((activity) => {
-      return (
-          <li
-            key={activity.activity_id}
-            //onClick={() => this.props.selectActivity(activity.activity_id)}
-            className="list-group-item">
-            {activity.date} - {activity.elder_fullname}
-          </li>
-        );
-    });
+
+  renderHistoryList(activity) {
+    return (
+      <li className="list-group-item" key={activity.activity_id}>
+        <HistoryDetail {...activity} />
+      </li>
+    );
   }
   handleClickPrevious() {
     this.props.fetchActivities(this.props.activities.previous);
@@ -27,24 +23,68 @@ class History extends Component{
     this.props.fetchActivities(this.props.activities.next);
   }
 
-  render() {
-  	if (this.props.activities == null) {
-  		return <div>Loading...</div>;
-  	}
+  renderHistoryDetailList(activity) {
     return (
       <div>
-        {this.renderList()}
-        <button className="btn btn-default" disabled={!this.props.activities.previous} onClick={this.handleClickPrevious.bind(this)}>Previous</button>
-        <button className="btn btn-default" disabled={!this.props.activities.next} onClick={this.handleClickNext.bind(this)}>Next</button>
+        <HistoryDetail {...activity} />
       </div>
-      
-    )
+    );
+  }
+
+  render() {
+    if (this.props.activities == null) {
+      return <div>Loading...</div>;
+    }
+    return (
+      <div>
+        <img
+          src="assets/history-clock-button.png"
+          className="img-fluid signin-img"
+        />
+        <div className="card">
+          <div className="card-body">
+            <h3 className="card-title history-detail">Quick Summary</h3>
+            <p className="card-text history-detail">Keep up the good work!</p>
+            <ul className="history-detail">
+              <li>
+                Last Week: {this.props.activities.last_week || 0} hours
+              </li>
+              <li>
+                Last Month: {this.props.activities.last_month || 0} hours
+              </li>
+            </ul>
+            <h3 className="card-title history-detail">History Detail</h3>
+            <p className="card-text history-detail">
+              Click on the list to see the details.
+            </p>
+            <ul className="list-group">
+              {this.props.activities.results.map(this.renderHistoryList)}
+            </ul>
+            <div className="history-btn">
+              <button
+                className="btn history-prev-btn"
+                disabled={!this.props.activities.previous}
+                onClick={this.handleClickPrevious.bind(this)}
+              >
+                Previous
+              </button>
+              <button
+                className="btn history-nxt-btn"
+                disabled={!this.props.activities.next}
+                onClick={this.handleClickNext.bind(this)}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
-function mapStateToProps(state){
-  return { activities: state.auth.activities}
+function mapStateToProps(state) {
+  return { activities: state.activity.activities };
 }
 
 export default connect(mapStateToProps, actions)(History);
-

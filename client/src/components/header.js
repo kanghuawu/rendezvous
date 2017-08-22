@@ -55,6 +55,7 @@ class Header extends Component {
         </NavItem>
       ];
     } else {
+
       return [
         <NavItem key={1}>
           <NavLink to="/signin" tag={Link}>

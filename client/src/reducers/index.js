@@ -5,10 +5,12 @@ import activity from './activity-reducer';
 import profile from './profile-reducer';
 import myelder from './myelder-reducer';
 import search from './search-reducer';
+import leaderboard from './leaderboard-reducer'
 import select from './select-reducer';
 
 const rootReducer = combineReducers({
   form,
+  leaderboard,
   activity,
   profile,
   myelder,

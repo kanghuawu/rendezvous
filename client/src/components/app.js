@@ -14,9 +14,13 @@ import History from "./history/history-list";
 import CheckIn from "./checkin/checkin";
 import CheckInFinished from "./checkin/checkin-finished";
 
-import Profile from "./profile/profile";
-import ProfileEdit from "./profile/profile-edit";
-import SearchAddElder from "./profile/search-add-elder";
+
+import LeaderBoard from './leaderboard/leaderboard'
+
+import Profile from './profile/profile';
+
+import SearchAddElder from './profile/search-add-elder';
+
 
 import Welcome from "./welcome";
 
@@ -35,7 +39,7 @@ export default () => {
             component={RequireAuth(CheckInFinished)}
           />
           <Route path="/history" component={RequireAuth(History)} />
-          <Route path="/profile/edit" component={RequireAuth(ProfileEdit)} />
+          <Route path="/leaderboard" component={RequireAuth(LeaderBoard)} />
           <Route path="/profile" component={RequireAuth(Profile)} />
           <Route path="/addelder" component={RequireAuth(SearchAddElder)} />
           <Route path="/" component={Welcome} />

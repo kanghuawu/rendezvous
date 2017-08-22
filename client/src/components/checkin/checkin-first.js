@@ -50,7 +50,7 @@ class CheckInFirst extends Component {
   }
   render() {
     const { handleSubmit } = this.props;
-    console.log(Object.getOwnPropertyNames(this.props.myelder).length);
+    
     return (
       <div>
         <form

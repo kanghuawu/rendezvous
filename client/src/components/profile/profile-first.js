@@ -42,14 +42,26 @@ class ProfileFirst extends Component {
     this.profileToggle();
   }
 
+  submitProfile(values) {
+    return this.props.updateProfile(values, () => {
+      this.profileToggle();
+    });
+  }
+
   updateMyPassword() {
     this.refs.password.getWrappedInstance().submit();
-    this.passwordToggle();
+  }
+
+  submitPassword(values) {
+    console.log(this.props);
+    return this.props.updatePassword(values, () => {
+      this.passwordToggle();
+    });
   }
 
   render() {
     if (this.props.profile == null) {
-      return <div className="loader" />;
+      return <div>Loading...</div>;
     }
 
     return (
@@ -68,7 +80,10 @@ class ProfileFirst extends Component {
               Badges: {this.props.profile.badges}
             </p>
             <div className="history-detail">
-              <button className="btn profile-btn btn-md" onClick={this.profileToggle}>
+              <button
+                className="btn profile-btn btn-md"
+                onClick={this.profileToggle}
+              >
                 Update Profile
               </button>
               <Modal
@@ -76,24 +91,28 @@ class ProfileFirst extends Component {
                 toggle={this.profileToggle}
                 className={this.props.className}
               >
-                <ModalHeader toggle={this.profileToggle}>Update Profile</ModalHeader>
+                <ModalHeader toggle={this.profileToggle}>
+                  Update Profile
+                </ModalHeader>
                 <ModalBody>
                   <ProfileEdit
                     ref={"profile"}
-                    onSubmit={this.props.updateProfile}
+                    onSubmit={this.submitProfile.bind(this)}
                   />
                 </ModalBody>
                 <ModalFooter>
-                  <button className="btn profile-btn" onClick={this.updateMyProfile}>
+                  <button
+                    className="btn profile-btn"
+                    onClick={this.updateMyProfile}
+                  >
                     Update
                   </button>{" "}
                   <Button color="secondary" onClick={this.profileToggle}>
                     Cancel
                   </Button>
                 </ModalFooter>
-              </Modal>
-              {" "}
-              <button className="btn profile-btn"  onClick={this.passwordToggle}>
+              </Modal>{" "}
+              <button className="btn profile-btn" onClick={this.passwordToggle}>
                 Update Password
               </button>
               <Modal
@@ -101,15 +120,20 @@ class ProfileFirst extends Component {
                 toggle={this.passwordToggle}
                 className={this.props.className}
               >
-                <ModalHeader toggle={this.passwordToggle}>Update Password</ModalHeader>
+                <ModalHeader toggle={this.passwordToggle}>
+                  Update Password
+                </ModalHeader>
                 <ModalBody>
                   <PasswordEdit
                     ref={"password"}
-                    onSubmit={this.props.updatePassword}
+                    onSubmit={this.submitPassword.bind(this)}
                   />
                 </ModalBody>
                 <ModalFooter>
-                  <button className="btn profile-btn" onClick={this.updateMyPassword}>
+                  <button
+                    className="btn profile-btn"
+                    onClick={this.updateMyPassword}
+                  >
                     Update
                   </button>{" "}
                   <Button color="secondary" onClick={this.passwordToggle}>
@@ -131,6 +155,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchProfile, updateProfile, updatePassword })(
-  ProfileFirst
-);
+export default connect(mapStateToProps, {
+  fetchProfile,
+  updateProfile,
+  updatePassword
+})(ProfileFirst);

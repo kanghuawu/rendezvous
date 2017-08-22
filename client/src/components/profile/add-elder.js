@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 import { reduxForm, Field } from "redux-form";
 import {
+  searchEldersListByUrl,
   selectElder,
   deselectElder,
   resetSelection,
@@ -28,7 +29,7 @@ class AddElder extends Component {
     if (this.props.search == null) {
       return <div className="loader" />;
     }
-    return _.map(this.props.search, elder => {
+    return _.map(this.props.search.results, elder => {
       const { elder_id } = elder;
       return (
         <li className="list-group-item" key={elder_id}>
@@ -64,7 +65,7 @@ class AddElder extends Component {
             >
               Add To My List
             </button>
-            <div className="pull-right">
+            <div className="float-right">
             <Link to="/checkin" >
               Return to Check In
             </Link><br/>
@@ -75,6 +76,22 @@ class AddElder extends Component {
             <ul className="list-group-search">
               {this.renderList()}
             </ul>
+            <div className="history-btn">
+              <button
+                className="btn history-prev-btn"
+                disabled={!this.props.search.previous}
+                onClick={() => {this.props.searchEldersListByUrl(this.props.search.previous)}}
+              >
+                Previous
+              </button>
+              <button
+                className="btn history-nxt-btn"
+                disabled={!this.props.search.next}
+                onClick={() => {this.props.searchEldersListByUrl(this.props.search.next)}}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -90,6 +107,7 @@ const mapStatesToProps = state => {
 };
 
 export default connect(mapStatesToProps, {
+  searchEldersListByUrl,
   addEldersList,
   selectElder,
   deselectElder,

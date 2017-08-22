@@ -8,7 +8,6 @@ import {
 export default (state = {}, action) => {
   switch(action.type) {
     case SELECT_ELDER:
-      console.log(action.payload);
       return [...state, action.payload];
     case DESELECT_ELDER:
       return _.without(state, action.payload);

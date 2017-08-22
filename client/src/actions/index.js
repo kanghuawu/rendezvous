@@ -188,6 +188,24 @@ export const searchEldersList = ({ firstname, lastname, phone }) => {
   };
 };
 
+export const searchEldersListByUrl = url => {
+  return dispatch => {
+    axios
+      .get(url, {
+        headers: { authorization: localStorage.getItem("token") }
+      })
+      .then(response => {
+        dispatch({
+          type: SEARCH_LIST,
+          payload: response.data
+        });
+      })
+      .catch(response => {
+        console.log(response);
+      });
+  };
+};
+
 export const clearSearch = () => {
   return dispatch => dispatch({ type: CLEAR_SEARCH });
 };
@@ -199,7 +217,7 @@ export const addEldersList = elderList => {
         headers: { authorization: localStorage.getItem("token") }
       })
       .then(response => {
-        dispatch({type: DESELECT_SEARCH, payload: elderList});
+        dispatch({ type: DESELECT_SEARCH, payload: elderList });
       })
       .catch(response => {
         console.log(response);
@@ -227,7 +245,7 @@ export const fetchProfile = () => {
   };
 };
 
-export const updateProfile = ({ first_name, last_name, phone }) => {
+export const updateProfile = ({ first_name, last_name, phone }, callback) => {
   return dispatch => {
     axios
       .put(
@@ -242,6 +260,9 @@ export const updateProfile = ({ first_name, last_name, phone }) => {
           type: UPDATE_PROFILE,
           payload: response.data
         });
+      })
+      .then(() => {
+        callback();
       })
       .catch(response => {
         console.log(response);
@@ -259,7 +280,7 @@ export const updatePassword = (password, callback) => {
         localStorage.removeItem("token");
         localStorage.setItem("token", "JWT " + response.data.token);
         callback();
-        alert("Your password has been changed!");
+        console.log('submit');
       })
       .catch(response => {
         console.log(response);

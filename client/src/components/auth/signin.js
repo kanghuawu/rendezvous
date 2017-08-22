@@ -18,7 +18,7 @@ class SignIn extends Component {
 
   handleFormSubmit = ({ email, password }) => {
     this.props.signInUser({ email, password }, () =>
-      this.props.history.push("/profile")
+      this.props.history.push("/checkin")
     );
   };
 

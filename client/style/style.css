@@ -180,3 +180,15 @@ button.profile-btn {
   padding: 0px;
   margin: auto;
 }
+
+.status-911 {
+  color: #fc0a0a;
+}
+
+.status-311, .status-411 {
+  color: #fc9208;
+}
+
+.status-OK {
+  color: #53d100;
+}

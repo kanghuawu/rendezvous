@@ -15,6 +15,7 @@ class HistoryDetail extends Component {
   }
 
   render() {
+    const className = `float-right status-${this.props.status}`;
     return (
       <div>
         <a
@@ -23,9 +24,11 @@ class HistoryDetail extends Component {
           onClick={this.toggle}
           style={{ marginBottom: "1rem" }}
         >
-          <h5>
-            {this.props.date + "  " + this.props.elder_fullname}
-          </h5>
+          <div>
+            {this.props.date + "  " + this.props.elder_fullname + "  "}
+            <div className={className}>{this.props.status}</div>
+          </div>
+
         </a>
         <Collapse isOpen={this.state.collapse}>
           <Card>
@@ -34,8 +37,6 @@ class HistoryDetail extends Component {
                 {"Type: " + this.props.activity_name}
                 <br />
                 {"Duration: " + this.props.duration + " hour(s)"}
-                <br />
-                {"Status: " + this.props.status}
                 <br />
                 {this.props.notes && "Note: " + this.props.notes}
               </p>

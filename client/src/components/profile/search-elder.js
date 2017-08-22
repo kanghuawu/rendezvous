@@ -23,7 +23,6 @@ class SearchElder extends Component {
     }
   }
   onReset() {
-    console.log(this.props);
     // this.props.clearSearch();
     this.props.reset();
   }

@@ -15,13 +15,6 @@ class History extends Component {
       </li>
     );
   }
-  handleClickPrevious() {
-    this.props.fetchActivities(this.props.activities.previous);
-  }
-
-  handleClickNext() {
-    this.props.fetchActivities(this.props.activities.next);
-  }
 
   renderHistoryDetailList(activity) {
     return (
@@ -33,7 +26,7 @@ class History extends Component {
 
   render() {
     if (this.props.activities == null) {
-      return <div>Loading...</div>;
+      return <div className="loader" />;
     }
     return (
       <div>
@@ -64,14 +57,14 @@ class History extends Component {
               <button
                 className="btn history-prev-btn"
                 disabled={!this.props.activities.previous}
-                onClick={this.handleClickPrevious.bind(this)}
+                onClick={() => {this.props.fetchActivities(this.props.activities.previous)}}
               >
                 Previous
               </button>
               <button
                 className="btn history-nxt-btn"
                 disabled={!this.props.activities.next}
-                onClick={this.handleClickNext.bind(this)}
+                onClick={() => {this.props.fetchActivities(this.props.activities.next)}}
               >
                 Next
               </button>

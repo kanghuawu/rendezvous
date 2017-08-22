@@ -1,61 +1,101 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import _ from 'lodash';
-import { withRouter } from 'react-router-dom';
-import { reduxForm, Field } from 'redux-form';
-import { addEldersList } from '../../actions';
-import CheckboxGroup from './checkbox-group';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import _ from "lodash";
+import { reduxForm, Field } from "redux-form";
+import {
+  selectElder,
+  deselectElder,
+  resetSelection,
+  addEldersList
+} from "../../actions";
 
 class AddElder extends Component {
-  onSubmit(addElder, formProps) {
-    if (addElder && formProps.addelders.length != 0) {
-      alert('You just added ' + formProps.addelders.length + 'elder(s)!');
-      this.props.addEldersList(formProps, () => this.props.history.push('/profile'));
+  constructor(props) {
+    super(props);
+    this.renderList = this.renderList.bind(this);
+  }
+  onChange(id) {
+    if (_.includes(this.props.select, id)) {
+      this.props.deselectElder(id);
+    } else {
+      this.props.selectElder(id);
     }
   }
-  renderSearchList() {
-    return _.map(this.props.searchList, elder => {
-      return ({
-        label: elder.first_name + " " + elder.last_name + " " + elder.phone,
-        value: elder.elder_id.toString()
-      })
+
+  renderList() {
+    // console.log(elder);
+    if (this.props.search == null) {
+      return <div className="loader" />;
+    }
+    return _.map(this.props.search, elder => {
+      const { elder_id } = elder;
+      return (
+        <li className="list-group-item" key={elder_id}>
+          <label className="custom-control custom-checkbox">
+            <input
+              id={elder_id}
+              type="checkbox"
+              checked={_.includes(this.props.select, elder_id)}
+              onChange={() => this.onChange(elder_id)}
+              className="custom-control-input"
+            />
+            <span className="custom-control-indicator" />
+            <h5 className="custom-control-description">
+              {elder.first_name + "  " + elder.last_name + "  " + elder.phone}
+            </h5>
+          </label>
+        </li>
+      );
     });
   }
+
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
-    const addElder = true;
-    if (this.props.searchList == null) {
-      return <div></div>;
-    }
     return (
-      <div>
-        <h3>Add an Elder to your List</h3>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this, addElder))}>
-          <CheckboxGroup name="addelders" options={this.renderSearchList()} />
-          <button className="btn btn-default" disabled={pristine || submitting} >Add Elders To My List</button>
-        </form>
+      <div className="col-sm-12 col-md-9">
+        <div className="card search-result">
+          <div className="card-body">
+            <h3 className="card-title">Result</h3>
+
+            <button
+              className="btn profile-btn"
+              disabled={!this.props.select.length}
+              onClick={() => this.props.addEldersList(this.props.select)}
+            >
+              Add To My List
+            </button>
+            <div className="pull-right">
+            <Link to="/checkin" >
+              Return to Check In
+            </Link><br/>
+            <Link to="/profile"  >
+              Return to Profile
+            </Link>
+            </div>
+            <ul className="list-group-search">
+              {this.renderList()}
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-const validate = values => {
-  const errors = {};
-  if (!values.addelders) {
-    errors.addelders = '';
-  } else if (values.addelders.length == 0) {
-    errors.addelders = 'Please select at least an elder';
-  }
-  return errors;
-}
+const mapStatesToProps = state => {
+  return {
+    search: state.search,
+    select: state.select
+  };
+};
 
-const mapStatesToProps = (state) => {
-  return ({
-    searchList: state.search
-  });
-}
-
-export default withRouter(connect(mapStatesToProps, { addEldersList })(reduxForm({
-  form: 'addmylist',
-  validate
-})(AddElder)));
+export default connect(mapStatesToProps, {
+  addEldersList,
+  selectElder,
+  deselectElder,
+  resetSelection
+})(
+  reduxForm({
+    form: "addmylist"
+  })(AddElder)
+);

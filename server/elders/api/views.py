@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView, DestroyAPIView
 from elders.models import Elder, ElderVolunteer
 from .serializers import ElderSerializer, ElderVolunteerCustomSerializer, ElderVolunteerCreateListSerializer, ElderVolunteerSerializer
 from rest_framework.permissions import (
@@ -58,10 +58,10 @@ class ElderVolunteerCreateListAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
-        queryset = ElderVolunteer.objects.filter(volunteer=self.request.user, elder__in=self.request.data.get('addelders'))
+        queryset = ElderVolunteer.objects.filter(volunteer=self.request.user, elder__in=self.request.data)
         if queryset.exists():
             return Response({'error': 'Elder Already Added'}, status=HTTP_400_BAD_REQUEST)
-        eldersArr = [{'elder': int(elder)} for elder in self.request.data.get('addelders')]
+        eldersArr = [{'elder': int(elder)} for elder in self.request.data]
         serializer = self.get_serializer(data=eldersArr, many=True)
         if serializer.is_valid():
             serializer.save(volunteer=self.request.user)
@@ -70,4 +70,11 @@ class ElderVolunteerCreateListAPIView(CreateAPIView):
         print serializer.errors
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
+class ElderVolunteerDelete(DestroyAPIView):
+    serializer_class = ElderVolunteerSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'match_id'
 
+    def get_queryset(self, *args, **kwargs):
+        queryset_list = ElderVolunteer.objects.filter(volunteer_id = self.request.user)
+        return queryset_list

@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^api/users/', include("accounts.api.urls", namespace='users-api')),
     url(r'^api/elders/', include("elders.api.urls", namespace='elders-api')),
     url(r'^api/activities/', include("activities.api.urls", namespace='activities-api')),
-    #url(r'^api/leaderboard/', include("leaderboard.api.urls", namespace="leaderboard-api")),
+    # url(r'^api/leaderboard/', include("leaderboard.api.urls", namespace="leaderboard-api")),
     # url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^ping/', PingAPIView.as_view()),
 ]

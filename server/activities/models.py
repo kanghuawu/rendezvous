@@ -24,6 +24,7 @@ class Activity(models.Model):
     duration = models.SmallIntegerField()
     date = models.DateField(auto_now_add=False, blank = True)
     status = models.CharField(default='OK', max_length=10, blank = True)
+    notes = models.CharField(max_length=500, blank = True)
     
     def getVolunteerName(self):
         return self.volunteer.full_name

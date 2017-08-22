@@ -5,6 +5,7 @@ import activity from './activity-reducer';
 import profile from './profile-reducer';
 import myelder from './myelder-reducer';
 import search from './search-reducer';
+import select from './select-reducer';
 
 const rootReducer = combineReducers({
   form,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   profile,
   myelder,
   search,
+  select,
   auth
 });
 

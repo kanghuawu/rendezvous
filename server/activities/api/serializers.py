@@ -21,7 +21,7 @@ class ActivitySerializer(serializers.ModelSerializer):
     elder_fullname = serializers.SerializerMethodField()
     class Meta:
         model = Activity
-        fields = ('activity_id', 'activity_name', 'date', 'duration', 'status', 'elder_fullname')
+        fields = ('activity_id', 'activity_name', 'date', 'duration', 'status', 'notes', 'elder_fullname')
     def get_elder_fullname(self, obj):
         return obj.elder.getFullName()
 

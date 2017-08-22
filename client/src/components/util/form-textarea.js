@@ -1,14 +1,19 @@
 import React from 'react';
 
-const renderSelectField = (field) => {
+const renderTextArea = (field) => {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
   return (
     <div className={className}>
       <label>{field.label}</label>
-      <select className="form-control is-valid" {...field.input} >
-        {field.options}  
-      </select>
+      <textarea
+        className="form-control is-valid"
+        name={field.name}
+        type={field.type}
+        placeholder={field.placeholder}
+        rows="5"
+        {...field.input}
+      />
       <div className="invalid-feedback">
         {touched ? error : ''}
       </div>
@@ -16,4 +21,4 @@ const renderSelectField = (field) => {
   );
 }
 
-export default renderSelectField
+export default renderTextArea

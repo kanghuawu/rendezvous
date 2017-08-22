@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import { searchEldersList, clearSearch } from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
+import renderField from "../util/form-helper";
+import { searchEldersList, clearSearch } from "../../actions";
 
 class SearchElder extends Component {
   componentWillMount() {
@@ -22,30 +23,62 @@ class SearchElder extends Component {
     }
   }
   onReset() {
-    this.props.clearSearch();
+    console.log(this.props);
+    // this.props.clearSearch();
+    this.props.reset();
   }
 
   render() {
     const { handleSubmit } = this.props;
     const searchElder = true;
     return (
-      <div>
-        <h3>Search for Elder</h3>
-         <form>
-          <div>
-            <Field placeholder="First Name" name="firstname" component="input" type="input" className="form-control" />
-            <Field placeholder="Last Name" name="lastname" component="input" type="input" className="form-control" />
-            <Field placeholder="Phone" name="phone" component="input" type="input" className="form-control" />
+      <div className="col-sm-12 col-md-3">
+        <div className="card signin-card">
+          <div className="card-body">
+            <h3 className="card-title">Search</h3>
+            <form>
+              <div>
+                <Field
+                  label="First Name"
+                  placeholder="ex. James"
+                  name="firstname"
+                  component={renderField}
+                  type="input"
+                />
+                <Field
+                  label="Last Name"
+                  placeholder="ex. Jordan"
+                  name="lastname"
+                  component={renderField}
+                  type="input"
+                />
+                <Field
+                  label="Phone"
+                  placeholder="ex. 6668889999"
+                  name="phone"
+                  component={renderField}
+                  type="input"
+                />
+              </div>
+              <button
+                className="btn profile-btn"
+                onClick={handleSubmit(this.onSubmit.bind(this, searchElder))}
+              >
+                Search
+              </button>{" "}
+              <button className="btn btn-default" onClick={this.props.reset}>
+                Reset
+              </button>
+            </form>
           </div>
-          <button className="btn btn-primary" onClick={handleSubmit(this.onSubmit.bind(this, searchElder))}>Search</button>
-          <button className="btn btn-default" onClick={this.onReset.bind(this)}>Reset</button>
-         </form>
+        </div>
       </div>
     );
   }
 }
 
-
-export default connect(null, { searchEldersList, clearSearch })(reduxForm({
-  form: 'searchelder'
-})(SearchElder))
+export default connect(null, { searchEldersList, clearSearch })(
+  reduxForm({
+    form: "searchelder"
+  })(SearchElder)
+);

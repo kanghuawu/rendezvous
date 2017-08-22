@@ -129,18 +129,6 @@ export const fetchMyEldersList = () => {
   }
 }
 
-// export function fetchMyEldersList() {
-//   return function(dispatch) {
-//     axios.get(`${ROOT_URL}/api/elders/mylist/`, {
-//       headers: { authorization: localStorage.getItem('token')}
-//     })
-//       .then(function (response){
-//         console.log(response.data)
-//       })
-//       .catch(function (error){console.log(error)});
-//   }
-// }
-
 
 // search
 
@@ -226,17 +214,6 @@ export const updatePassword = (password, callback) => {
   }
 }
 
-// export function fetchLeaderBoardList() {
-//   return function(dispatch) {
-//     axios.get(`${ROOT_URL}/api/leaderboard/`, {
-//       headers: { authorization: localStorage.getItem('token')}
-//     })
-//       .then(function (response){
-//         console.log(response.data)
-//       })
-//       .catch(function (error){console.log(error)});
-//   }
-// }
 
 // leaderboard
 

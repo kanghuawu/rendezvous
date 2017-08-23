@@ -39,7 +39,7 @@ class LeaderBoard extends Component {
   }
 
   render() {
-    if (this.props.leaderboard.length === 0 ) {
+    if (this.props.leaderboard == null ) {
       return <Loader/>;
     }
     return (
@@ -47,7 +47,7 @@ class LeaderBoard extends Component {
         <img src={leaderboardIcon} className="img-fluid signin-img" />
         <div className="card">
           <div className="card-body card-leaderboard">
-            <h2 className="card-title history-detail">LeaderBoard List</h2>
+            <h2 className="card-title history-detail">LeaderBoard List (Last Month)</h2>
             <table className="table table-hover history-detail">
               <thead>
                 <tr>

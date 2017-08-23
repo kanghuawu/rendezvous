@@ -5,6 +5,7 @@ import { submit } from "redux-form";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import ProfileEdit from "./profile-edit";
 import PasswordEdit from "./password-edit";
+import Loader from "../util/loader-circle";
 import { fetchProfile, updateProfile, updatePassword } from "../../actions";
 
 class ProfileFirst extends Component {
@@ -61,7 +62,7 @@ class ProfileFirst extends Component {
 
   render() {
     if (this.props.profile == null) {
-      return <div>Loading...</div>;
+      return <Loader/>;
     }
 
     return (

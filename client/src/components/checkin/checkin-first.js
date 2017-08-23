@@ -7,6 +7,11 @@ import validate from "./validate";
 import renderField from "../util/form-helper";
 import renderSelectField from "../util/form-select-helper";
 import renderDatePicker from "../util/date-picker";
+import Loader from "../util/loader-circle";
+
+import oldLadyIcon from "../../../assets/oldlady-icon.png";
+import calendarIcon from "../../../assets/Calendar-icon.png";
+import typeIcon from "../../../assets/Visit-icon.png";
 
 class CheckInFirst extends Component {
   renderMyEldersList() {
@@ -49,8 +54,10 @@ class CheckInFirst extends Component {
     this.props.nextPage();
   }
   render() {
+    if (this.props.activityTypes == null || this.props.myelder == null) {
+      return <Loader/>;
+    }
     const { handleSubmit } = this.props;
-    
     return (
       <div>
         <form
@@ -58,7 +65,7 @@ class CheckInFirst extends Component {
           onSubmit={handleSubmit(this.onSubmit.bind(this))}
         >
           <h3>Step 1</h3>
-          <img src="assets/oldlady-icon.png" className="img-fluid signin-img" />
+          <img src={oldLadyIcon} className="img-fluid signin-img" />
           <div>
             {Object.getOwnPropertyNames(this.props.myelder).length === 0 &&
               <div className="text-danger">
@@ -73,7 +80,7 @@ class CheckInFirst extends Component {
             />
           </div>
           <img
-            src="assets/Calendar-icon.png"
+            src={calendarIcon}
             className="img-fluid signin-img"
           />
           <div>
@@ -83,7 +90,7 @@ class CheckInFirst extends Component {
               component={renderDatePicker}
             />
           </div>
-          <img src="assets/Visit-icon.png" className="img-fluid signin-img" />
+          <img src={typeIcon} className="img-fluid signin-img" />
           <div>
             <Field
               label="What type of activity?"

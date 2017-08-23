@@ -3,14 +3,16 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const VENDOR_LIBS = [
-  'axios', 'lodash', 'moment', 'react', 'react-datepicker', 'react-dom', 
-  'react-redux', 'react-router', 'react-router-dom', 'redux', 'redux-form', 'redux-thunk'
+  'axios', 'lodash', 'moment', 'react', 'react-addons-css-transition-group',
+  'react-addons-transition-group', 'react-datepicker',
+  'react-dom', 'react-redux', 'react-router', 'react-router-dom', 
+  'reactstrap', 'redux', 'redux-form', 'redux-thunk'
 ];
 
 module.exports = {
   entry: {
     bundle: './src/index.js',
-    // vendor: VENDOR_LIBS
+    vendor: VENDOR_LIBS
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -26,6 +28,16 @@ module.exports = {
       {
         use: ['style-loader', 'css-loader'],
         test: /\.css$/
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {limit: 40000}
+          },
+          'image-webpack-loader'
+        ]
       }
     ]
   },

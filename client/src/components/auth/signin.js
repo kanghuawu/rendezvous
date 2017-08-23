@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { signInUser, clearAuthError } from "../../actions";
 import renderField from "../util/form-helper";
 import RenderAlert from "./auth-alert";
+import logo from "../../../assets/LBFE-logo-small.png";
 
 class SignIn extends Component {
   handleFormSubmit = ({ email, password }) => {
@@ -27,7 +28,7 @@ class SignIn extends Component {
             <div className="card signin-card">
               <div className="card-body">
                 <img
-                  src="assets/LBFE-logo-small.png"
+                  src={logo}
                   className="img-fluid signin-img"
                 />
                 <div className="row">

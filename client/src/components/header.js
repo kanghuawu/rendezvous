@@ -39,7 +39,7 @@ class Header extends Component {
           </NavLink>
         </NavItem>,
         <NavItem key={3}>
-          <NavLink to="/learderboard" tag={Link}>
+          <NavLink to="/leaderboard" tag={Link}>
             Leaderboard
           </NavLink>
         </NavItem>,

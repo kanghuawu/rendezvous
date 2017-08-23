@@ -6,12 +6,12 @@ export default () => {
       <div className="row">
         <div className="col-sm-12">
           <div className="jumbotron jumbotron-fluid">
-            <div className="container">
+            <div className="container welcome">
               <h3 className="display-4">
                 Welcome to Little Brothers Friends of Elderly{" "}
               </h3>
               <p className="lead">
-                Just 3 step to help us track how well is the elder doing<br />
+                <br />Just 3 step to help us track how well is the elder doing<br />
                 <div className="float-left">
                 Step 1: Sign In or Sign up<br />
                 Step 2: Add an elder to your list<br />

@@ -10,6 +10,7 @@ import {
   fetchActivityTypes,
   createActivity
 } from "../../actions";
+import checkinIcon from "../../../assets/Checkin-icon.png";
 
 class CheckIn extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class CheckIn extends Component {
     const { page } = this.state;
     return (
       <div>
-        <img src="assets/Checkin-icon.png" className="img-fluid signin-img" />
+        <img src={checkinIcon} className="img-fluid signin-img" />
         <div className="card">
           <div className="card-body">
             {page === 1 && <CheckInFirst nextPage={this.nextPage} />}

@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
-import { updatePassword } from "../../actions";
+import { clearAuthError } from "../../actions";
 import renderField from "../util/form-helper";
 import RenderAlert from "../auth/auth-alert";
 
 class PasswordEdit extends Component {
+  componentWillUnmount() {
+    this.props.clearAuthError();
+  }
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -52,7 +55,7 @@ const validate = value => {
   return errors;
 };
 
-export default connect(null, null, null, { withRef: true })(
+export default connect(null, { clearAuthError }, null, { withRef: true })(
   reduxForm({
     form: "updatepassword",
     validate

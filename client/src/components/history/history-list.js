@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HistoryDetail from "./history-detail";
 import * as actions from "../../actions";
+import Loader from "../util/loader-circle";
+import historyIcon from "../../../assets/history-clock-button.png";
 
 class History extends Component {
   componentWillMount() {
@@ -26,12 +28,12 @@ class History extends Component {
 
   render() {
     if (this.props.activities == null) {
-      return <div className="loader" />;
+      return <Loader/>;
     }
     return (
       <div>
         <img
-          src="assets/history-clock-button.png"
+          src={historyIcon}
           className="img-fluid signin-img"
         />
         <div className="card">

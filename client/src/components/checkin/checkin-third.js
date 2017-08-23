@@ -6,6 +6,8 @@ import renderTextArea from '../util/form-textarea';
 import renderSelectField from '../util/form-select-helper';
 import validate from './validate';
 // import renderField from './render-field';
+import sadFaceIcon from "../../../assets/sad-face.png";
+import noteIcon from "../../../assets/note.png";
 
 class CheckInThird extends Component {
   renderStatus() {
@@ -26,7 +28,7 @@ class CheckInThird extends Component {
       <div>
         <form className="sigin-form" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <h3>Step 3</h3>
-          <img src="assets/sad-face.png" className="img-fluid signin-img" />
+          <img src={sadFaceIcon} className="img-fluid signin-img" />
           <div >
             <Field 
               label="NOT OK? What's the elder's status?" 
@@ -34,7 +36,7 @@ class CheckInThird extends Component {
               component={renderSelectField} 
               options={this.renderStatus()} 
             />
-            <img src="assets/note.png" className="img-fluid signin-img" />
+            <img src={noteIcon} className="img-fluid signin-img" />
             <Field 
               label="Can you add some notes?" 
               name="notes"

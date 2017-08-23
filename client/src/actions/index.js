@@ -313,7 +313,7 @@ export const deselectElder = id => {
 
 export const fetchLeaderBoardList = () => {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/api/leaderboard/`, {
+    axios.get(`${ROOT_URL}/api/activities/leaderboard/`, {
       headers: { authorization: localStorage.getItem('token')}
     }).then(response => {
       dispatch({

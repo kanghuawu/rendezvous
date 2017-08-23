@@ -1,49 +1,77 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import {fetchLeaderBoardList} from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
+import { fetchLeaderBoardList } from "../../actions";
+import Loader from "../util/loader-circle";
+import leaderboardIcon from "../../../assets/leaderboard.png";
 
 class LeaderBoard extends Component {
-  componentWillMount(){
+  constructor(props) {
+    super(props);
+    this.renderLeaderBoard = this.renderLeaderBoard.bind(this);
+  }
+  componentWillMount() {
     this.props.fetchLeaderBoardList();
   }
-  renderLeaderBoard(board){
-    return (
-      <tr key={board.leaderboard_id}>
-        <td>{board.first_name}</td>
-        <td>{board.hours}</td>
-      </tr>
-    );
 
+  renderLeaderBoard() {
+    return this.props.leaderboard.map((board, index) => {
+      return (
+        <tr key={index}>
+          <td>
+            {index + 1}
+          </td>
+          <td>
+            {board.volunteer_fullname}
+          </td>
+          <td>
+            {board.hours}
+          </td>
+          <td>
+            {board.volunteer__hearts}
+          </td>
+          <td>
+            {board.volunteer__badges}
+          </td>
+        </tr>
+      );
+    });
   }
-// 38: {this.renderLeaderBoard()}
+
   render() {
-        if (this.props.leaderboard == null) {
-      return <div>Loading...</div>;
+    if (this.props.leaderboard.length === 0 ) {
+      return <Loader/>;
     }
     return (
       <div>
-         <h3>LeaderBoard List:</h3>
-          <table className="table table-hover">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Hours</th>
-            </tr>
-          </thead>
-          <tbody>
-          {this.props.leaderboard.map(this.renderLeaderBoard)}
-          </tbody>
-        </table>
+        <img src={leaderboardIcon} className="img-fluid signin-img" />
+        <div className="card">
+          <div className="card-body card-leaderboard">
+            <h2 className="card-title history-detail">LeaderBoard List</h2>
+            <table className="table table-hover history-detail">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Hours</th>
+                  <th>Hearts</th>
+                  <th>Badges</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderLeaderBoard()}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return { 
+const mapStateToProps = state => {
+  return {
     leaderboard: state.leaderboard
-  }
-}
-export default connect(mapStateToProps, {fetchLeaderBoardList})(LeaderBoard);
-
+  };
+};
+export default connect(mapStateToProps, { fetchLeaderBoardList })(LeaderBoard);

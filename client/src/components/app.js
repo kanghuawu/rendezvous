@@ -3,22 +3,15 @@ import { Route, Switch } from "react-router-dom";
 
 import Header from "./header";
 import Footer from "./footer";
-
 import Signin from "./auth/signin";
 import Signout from "./auth/signout";
 import Signup from "./auth/signup";
 import RequireAuth from "./auth/require_auth";
-
 import History from "./history/history-list";
-
 import CheckIn from "./checkin/checkin";
 import CheckInFinished from "./checkin/checkin-finished";
-
-
 import LeaderBoard from './leaderboard/leaderboard'
-
 import Profile from './profile/profile';
-
 import SearchAddElder from './profile/search-add-elder';
 
 

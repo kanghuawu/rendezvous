@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { reduxForm, Field, formValueSelector } from "redux-form";
 import renderField from "../util/form-helper";
 import validate from "./validate";
+import durationIcon from "../../../assets/clock.png";
+import happyIcon from "../../../assets/happy-granny.png";
+import sadIcon from "../../../assets/upset-granny.png";
+
 
 class CheckInSecond extends Component {
   constructor(props) {
@@ -26,7 +30,7 @@ class CheckInSecond extends Component {
         >
           <h3>Step 2</h3>
           <div>
-            <img src="assets/clock.png" className="img-fluid signin-img" />
+            <img src={durationIcon} className="img-fluid signin-img" />
             <Field
               label="How Long? (hours)"
               name="duration"
@@ -49,7 +53,7 @@ class CheckInSecond extends Component {
                   OK
                 </label>
                 <img
-                  src="assets/happy-granny.png"
+                  src={happyIcon}
                   className="img-fluid signin-img"
                 />
               </div>
@@ -66,7 +70,7 @@ class CheckInSecond extends Component {
                   Not OK
                 </label>
                 <img
-                  src="assets/upset-granny.png"
+                  src={sadIcon}
                   className="img-fluid signin-img"
                 />
                 {this.props.dummyok === "not" &&

@@ -26,11 +26,10 @@ class ActivitySerializer(serializers.ModelSerializer):
         return obj.elder.getFullName()
 
 class ActivityLeaderboardSerializer(serializers.Serializer):
-    # volunteer__first_name = serializers.CharField()
-    # volunteer__last_name = serializers.CharField()
-    # volunteer = serializers.PrimaryKeyRelatedField(queryset=Volunteer.objects.all())
     volunteer_fullname = serializers.SerializerMethodField()
     hours = serializers.IntegerField()
+    volunteer__hearts = serializers.IntegerField()
+    volunteer__badges = serializers.IntegerField()
 
     def get_volunteer_fullname(self, obj):
         first_name = obj.get('volunteer__first_name')

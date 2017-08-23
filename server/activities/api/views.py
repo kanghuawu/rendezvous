@@ -81,6 +81,6 @@ class ActivityLeaderboardAPIView(ListAPIView):
     def get_queryset(self, *args, **kwargs):
         queryset_list = Activity.objects.filter(date__range = getPreviousMonthRange()).values('volunteer').annotate(
             hours = Sum('duration')).order_by('-hours').values(
-            'volunteer__first_name', 'volunteer__last_name', 'hours')
+            'volunteer__first_name', 'volunteer__last_name', 'volunteer__hearts', 'volunteer__badges', 'hours')
         return queryset_list[:10]
      

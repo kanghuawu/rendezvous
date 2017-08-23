@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { signUpUser, clearAuthError } from "../../actions";
 import renderField from "../util/form-helper";
 import RenderAlert from "./auth-alert";
-
+import logo from "../../../assets/LBFE-logo-small.png";
 
 class SignUp extends Component {
   
@@ -26,7 +26,7 @@ class SignUp extends Component {
             <div className="card signin-card">
               <div className="card-body">
                 <img
-                  src="assets/LBFE-logo-small.png"
+                  src={logo}
                   className="img-fluid signin-img"
                 />
                 <div className="row">
@@ -37,20 +37,23 @@ class SignUp extends Component {
                       onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
                     >
                       <Field
-                        label="E-Mail:"
+                        label="E-Mail"
                         name="email"
+                        placeholder="E-Mail"
                         component={renderField}
                         type="email"
                       />
                       <Field
-                        label="Password:"
+                        label="Password"
                         name="password"
+                        placeholder="Password"
                         component={renderField}
                         type="password"
                       />
                       <Field
-                        label="Confirm Password:"
+                        label="Confirm Password"
                         name="passwordConfirm"
+                        placeholder="Confirm Password"
                         component={renderField}
                         type="password"
                       />

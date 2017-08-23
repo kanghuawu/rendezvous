@@ -8,7 +8,7 @@ import reduxThunk from 'redux-thunk';
 import App from './components/app';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
-
+import '../style/style.css';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);

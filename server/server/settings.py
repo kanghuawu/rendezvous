@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'activities.apps.ActivitiesConfig',
     'elders.apps.EldersConfig',
-    'leaderboard.apps.LeaderBoardConfig',
+    #'leaderboard.apps.LeaderBoardConfig',
 ]
 
 AUTH_USER_MODEL = 'accounts.Volunteer'

@@ -15,13 +15,20 @@ import {
   SEARCH_LIST,
   DESELECT_SEARCH,
   ADD_ELDERS_LIST,
+
+  FETCH_LEADER_BOARD_LIST,
+
+
   FETCH_PROFILE,
   UPDATE_PROFILE,
   UPDATE_PASSWORD,
+
+
   SELECT_ELDER,
   DESELECT_ELDER,
   RESET_SELECTION
 } from "./types";
+
 
 const ROOT_URL = "http://localhost:8000";
 // const ROOT_URL = 'https://immense-wildwood-85181.herokuapp.com';
@@ -169,6 +176,7 @@ export const deleteMyEldersList = id => {
   };
 };
 
+
 // search
 
 export const searchEldersList = ({ firstname, lastname, phone }) => {
@@ -300,6 +308,23 @@ export const deselectElder = id => {
   return { type: DESELECT_ELDER, payload: id };
 };
 
+
+// leaderboard
+
+export const fetchLeaderBoardList = () => {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/api/leaderboard/`, {
+      headers: { authorization: localStorage.getItem('token')}
+    }).then(response => {
+      dispatch({
+        type: FETCH_LEADER_BOARD_LIST,
+        payload: response.data
+      })
+    });
+  }
+}
+
 export const resetSelection = id => dispatch => {
   return { type: RESET_SELECTION };
 };
+

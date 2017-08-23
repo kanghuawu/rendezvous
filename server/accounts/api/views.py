@@ -41,6 +41,7 @@ class VolunteerDetailAPIView(RetrieveUpdateAPIView):
         obj = self.queryset.get(email = self.request.user)
         return obj
 
+
 # https://stackoverflow.com/questions/23275887/django-rest-change-users-password-view
 class ChangePasswordView(UpdateAPIView):
     """

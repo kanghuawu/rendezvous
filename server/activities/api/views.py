@@ -27,6 +27,9 @@ class ActivityCreateAPIView(CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(volunteer = self.request.user)
+        volunteer = self.request.user
+        volunteer.increase_heart()
+        volunteer.give_badge()
         return Response(status=HTTP_201_CREATED)
 
 

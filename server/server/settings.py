@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'webpack_loader',
     'custom_user',
-    'custom',
     # local app
     'accounts.apps.AccountsConfig',
     'activities.apps.ActivitiesConfig',
@@ -184,6 +183,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 # JWT setting
 JWT_AUTH = {
     # 'JWT_PAYLOAD_HANDLER': 'custom.custom_jwt.CustomJSONWebTokenAuthentication',
-    'JWT_GET_USER_SECRET_KEY': 'custom.custom_jwt.jwt_get_secret_key',
+    'JWT_GET_USER_SECRET_KEY': 'accounts.custom_jwt.jwt_get_secret_key',
     'JWT_VERIFY_EXPIRATION': False,
 }

@@ -12,11 +12,15 @@ from rest_framework.permissions import (
     )
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+from rest_framework.pagination import PageNumberPagination
 
+class SearchPagination(PageNumberPagination):
+    page_size = 10
 
 class ElderListAPIView(ListAPIView, CreateAPIView):
     queryset = Elder.objects.all()
     serializer_class = ElderSerializer
+    pagination_class = SearchPagination
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -26,11 +30,11 @@ class ElderListAPIView(ListAPIView, CreateAPIView):
         elder_lastname = self.request.query_params.get('lastname', None)
         elder_phone = self.request.query_params.get('phone', None)
         if elder_firstname is not None and elder_firstname != '':
-            queryset = queryset.filter(first_name__contains = elder_firstname)
+            queryset = queryset.filter(first_name__icontains = elder_firstname)
         if elder_lastname is not None and elder_lastname != '':
-            queryset = queryset.filter(last_name__contains = elder_lastname)
+            queryset = queryset.filter(last_name__icontains = elder_lastname)
         if elder_phone is not None and elder_phone != '':
-            queryset = queryset.filter(phone__contains = elder_phone)
+            queryset = queryset.filter(phone__icontains = elder_phone)
         return queryset.order_by('last_name', 'first_name')
     
 

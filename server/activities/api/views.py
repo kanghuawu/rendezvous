@@ -14,6 +14,7 @@ from datetime import timedelta, datetime, date
 from dateutil.relativedelta import relativedelta
 from django.db.models import Sum
 
+
 def getPreviousMonthRange():
     this_month = datetime.today()
     prevous_month = datetime.today() - relativedelta(months=1)
@@ -39,7 +40,6 @@ class ActivityListAPIView(ListAPIView):
         response = super(ActivityListAPIView, self).list(request, args, kwargs)
         previous_week = datetime.today().isocalendar()[1] - 1
         onemonth = datetime.today() - relativedelta(months=1)
-        print getPreviousMonthRange()
         last_week_hours = self.get_queryset().filter(date__week = previous_week).aggregate(
             last_week=Sum('duration'))
         # print last_week_hours

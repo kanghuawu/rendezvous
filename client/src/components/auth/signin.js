@@ -2,25 +2,20 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import * as actions from "../../actions";
+import { signInUser, clearAuthError } from "../../actions";
 import renderField from "../util/form-helper";
+import RenderAlert from "./auth-alert";
 
 class SignIn extends Component {
-  renderAlert() {
-    if (this.props.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <strong>Oops!</strong> {this.props.errorMessage}
-        </div>
-      );
-    }
-  }
-
   handleFormSubmit = ({ email, password }) => {
     this.props.signInUser({ email, password }, () =>
       this.props.history.push("/checkin")
     );
-  };
+  }
+
+  componentWillUnmount() {
+    this.props.clearAuthError();
+  }
 
   render() {
     const { handleSubmit } = this.props;
@@ -56,7 +51,7 @@ class SignIn extends Component {
                         component={renderField}
                         type="password"
                       />
-                      {this.renderAlert()}
+                      <RenderAlert/>
                       <button type="submit" className="btn signin-btn btn-lg">
                         Sign In
                       </button>
@@ -87,11 +82,8 @@ const validate = value => {
   return errors;
 };
 
-const mapStateToProps = state => {
-  return { errorMessage: state.auth.error };
-};
 
-export default connect(mapStateToProps, actions)(
+export default connect(null, { signInUser, clearAuthError })(
   reduxForm({
     form: "signin",
     validate

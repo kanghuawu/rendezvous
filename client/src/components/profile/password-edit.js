@@ -4,19 +4,11 @@ import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 import { updatePassword } from "../../actions";
 import renderField from "../util/form-helper";
+import RenderAlert from "../auth/auth-alert";
 
 class PasswordEdit extends Component {
-  renderAlert() {
-    if (this.props.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <strong>Oops!</strong> {this.props.errorMessage}
-        </div>
-      );
-    }
-  }
   render() {
-    const {handleSubmit} = this.props;
+    const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field
@@ -37,6 +29,7 @@ class PasswordEdit extends Component {
           component={renderField}
           type="password"
         />
+        <RenderAlert />
       </form>
     );
   }

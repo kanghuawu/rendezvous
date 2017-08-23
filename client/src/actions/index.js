@@ -5,6 +5,7 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
+  CLEAR_AUTH_ERROR,
   FETCH_ACTIVITIES,
   SELECTED_ACTIVITY,
   FETCH_ACTIVITY_TYPES,
@@ -35,7 +36,7 @@ export const signInUser = ({ email, password }, callback) => {
         callback();
       })
       .catch(response => {
-        dispatch(authError("Bad Login Info"));
+        dispatch(authError(response.response.data));
       });
   };
 };
@@ -50,8 +51,7 @@ export const signUpUser = ({ email, password }, callback) => {
         callback();
       })
       .catch(response => {
-        console.log(response);
-        dispatch(authError("??"));
+        dispatch(authError(response.response.data));
       });
   };
 };
@@ -66,6 +66,10 @@ export const authError = error => {
     type: AUTH_ERROR,
     payload: error
   };
+};
+
+export const clearAuthError = () => {
+  return { type: CLEAR_AUTH_ERROR };
 };
 
 export const fetchActivities = (url = `${ROOT_URL}/api/activities/`) => {
@@ -280,10 +284,9 @@ export const updatePassword = (password, callback) => {
         localStorage.removeItem("token");
         localStorage.setItem("token", "JWT " + response.data.token);
         callback();
-        console.log('submit');
       })
       .catch(response => {
-        console.log(response);
+        dispatch(authError(response.response.data));
       });
   };
 };

@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import datetime
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'webpack_loader',
     'custom_user',
+    'custom',
     # local app
     'accounts.apps.AccountsConfig',
     'activities.apps.ActivitiesConfig',
@@ -181,8 +183,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # JWT setting
 JWT_AUTH = {
-    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'custom_jwt.jwt_response_payload_handler',
-    # 'JWT_PAYLOAD_HANDLER': 'custom_jwt.jwt_payload_handler',
+    # 'JWT_PAYLOAD_HANDLER': 'custom.custom_jwt.CustomJSONWebTokenAuthentication',
+    'JWT_GET_USER_SECRET_KEY': 'custom.custom_jwt.jwt_get_secret_key',
     'JWT_VERIFY_EXPIRATION': False,
-    'JWT_USERNAME_FIELD': 'email',
 }

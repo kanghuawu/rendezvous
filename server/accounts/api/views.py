@@ -5,7 +5,9 @@ from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from .serializers import VolunteerSerializer, VolunteerProfileSerializer, ChangePasswordSerializer
 from rest_framework_jwt.settings import api_settings
-
+from django.utils import timezone
+from django.utils.dateformat import format
+from datetime import datetime
 
 Volunteer = get_user_model()
 
@@ -61,6 +63,7 @@ class ChangePasswordView(UpdateAPIView):
             if not self.object.check_password(serializer.data.get("old_password")):
                 return Response({"error": ["Wrong password."]}, status=HTTP_400_BAD_REQUEST)
             # set_password also hashes the password that the user will get
+            self.object.token_last_expired = timezone.now()
             self.object.set_password(serializer.data.get("new_password"))
             self.object.save()
             payload = jwt_payload_handler(self.request.user)

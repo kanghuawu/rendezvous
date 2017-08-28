@@ -14,12 +14,10 @@ docs/locale/
 node_modules/
 tests/coverage_html/
 tests/.coverage
-build/
 tests/report/
 env/
 
 /node_modules
-bundle.js
 npm-debug.log
 .DS_Store
 # IntelliJ

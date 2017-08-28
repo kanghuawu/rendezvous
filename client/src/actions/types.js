@@ -26,4 +26,5 @@ export const FETCH_LEADER_BOARD_LIST = 'fetch_leader_board_list'
 // select elder
 export const SELECT_ELDER = 'select_elder';
 export const DESELECT_ELDER = 'deselect_elder';
+export const RESET_SELECTION = 'reset_selection';
 

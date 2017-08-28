@@ -8,7 +8,6 @@ import {
 export default (state = {}, action) => {
   switch(action.type) {
     case SEARCH_LIST:
-    console.log(action.payload);
       return {
         previous: action.payload.previous,
         next: action.payload.next,

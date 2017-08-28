@@ -5,7 +5,7 @@ import {
   RESET_SELECTION
 } from '../actions/types';
 
-export default (state = {}, action) => {
+export default (state = [], action) => {
   switch(action.type) {
     case SELECT_ELDER:
       return [...state, action.payload];

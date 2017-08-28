@@ -56,7 +56,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchProfile }, null, { withRef: true })(
+export default connect(mapStateToProps, { fetchProfile }, null, {
+  withRef: true
+})(
   reduxForm({
     form: "updateprofile"
   })(ProfileEdit)
